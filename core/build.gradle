@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+group   = 'nz.co.twoten'
+version = '1.0.0'
+archivesBaseName = 'concordion-extensions'
+eclipseProject.projectName = 'concordion-extensions'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.concordion:concordion:1.4.0"
+}

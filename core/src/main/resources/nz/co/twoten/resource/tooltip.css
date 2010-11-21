@@ -1,0 +1,43 @@
+a.tt img {border: none; padding-left:4px;} 
+
+/*---------- bubble tooltip, courtesy of trentrichardson.com -----------*/
+a.tt{
+    position:relative;
+    z-index:24;
+    color:#3CA3FF;
+    font-size:10pt;
+    text-decoration:none;
+}
+a.tt span{ display: none; }
+
+/*background:; ie hack, something must be changed in a for ie to execute it*/
+a.tt:hover{ z-index:25; color: #aaaaff; background:;}
+a.tt:hover span.tooltip{
+    display:block;
+    position:absolute;
+    top:0px; left:0;
+  padding: 15px 0 0 0;
+  width:400px;
+  color: #993300;
+    text-align: left;
+  filter: alpha(opacity:95);
+  KHTMLOpacity: 0.95;
+  MozOpacity: 0.95;
+  opacity: 0.95;
+}
+a.tt:hover span.top{
+  display: block;
+  padding: 30px 8px 0;
+    background: url(image/bubble.gif) no-repeat top;
+}
+a.tt:hover span.middle{ /* different middle bg for stretch */
+  display: block;
+  padding: 0 8px; 
+  background: url(image/bubble_filler.gif) repeat bottom; 
+}
+a.tt:hover span.bottom{
+  display: block;
+  padding:3px 8px 10px;
+  color: #548912;
+    background: url(image/bubble.gif) no-repeat bottom;
+}
