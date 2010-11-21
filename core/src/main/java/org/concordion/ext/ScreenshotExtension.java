@@ -1,12 +1,12 @@
-package nz.co.twoten.concordion;
+package org.concordion.ext;
 
 import java.awt.Robot;
 
-import nz.co.twoten.concordion.screenshot.ScreenshotEmbedder;
 
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
 import org.concordion.api.extension.ConcordionExtensionFactory;
+import org.concordion.ext.screenshot.ScreenshotEmbedder;
 
 /**
  * Adds screenshots to the Concordion output, typically when failures or exceptions occur. The screenshot is displayed when you hover over the relevant element.
@@ -18,7 +18,7 @@ import org.concordion.api.extension.ConcordionExtensionFactory;
  * <p>
  * To install the extension:
  * <pre>
- *       System.setProperty("concordion.extensions", "nz.co.twoten.concordion.ScreenshotExtension");
+ *       System.setProperty("concordion.extensions", "org.concordion.ext.ScreenshotExtension");
  * </pre>
  * <h4>Custom Configuration</h4>
  * The extension can be customised using an {@link ConcordionExtensionFactory} to create and modify the extension.  
@@ -27,8 +27,8 @@ import org.concordion.api.extension.ConcordionExtensionFactory;
  * <pre>
  * package carbon;
  * 
- * import nz.co.twoten.concordion.ScreenshotExtension;
- * import nz.co.twoten.concordion.ScreenshotTaker;
+ * import org.concordion.ext.ScreenshotExtension;
+ * import org.concordion.ext.ScreenshotTaker;
  * import nz.co.twoten.selenium.logger.SeleniumScreenshotTaker;
  * 
  * import org.concordion.api.extension.ConcordionExtension;

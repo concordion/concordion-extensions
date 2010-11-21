@@ -1,7 +1,9 @@
-package nz.co.twoten.concordion.footer;
+package org.concordion.ext.footer;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+
+import org.concordion.ext.footer.TimestampFormatter;
 import org.junit.Test;
 
 

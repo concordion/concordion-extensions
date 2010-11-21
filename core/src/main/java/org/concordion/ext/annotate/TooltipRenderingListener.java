@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.annotate;
+package org.concordion.ext.annotate;
 
 import java.io.ByteArrayOutputStream;
 import java.util.logging.ConsoleHandler;
@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.StreamHandler;
 
-import nz.co.twoten.jul.formatter.TimeAndMessageFormatter;
 
 import org.concordion.api.Element;
 import org.concordion.api.Resource;
@@ -26,6 +25,7 @@ import org.concordion.api.listener.SurplusRowEvent;
 import org.concordion.api.listener.ThrowableCaughtEvent;
 import org.concordion.api.listener.ThrowableCaughtListener;
 import org.concordion.api.listener.VerifyRowsListener;
+import org.concordion.ext.jul.formatter.TimeAndMessageFormatter;
 
 public class TooltipRenderingListener implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
         SpecificationProcessingListener, VerifyRowsListener, ThrowableCaughtListener {

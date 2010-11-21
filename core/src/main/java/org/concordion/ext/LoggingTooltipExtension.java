@@ -1,14 +1,14 @@
-package nz.co.twoten.concordion;
+package org.concordion.ext;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import nz.co.twoten.concordion.annotate.TooltipRenderingListener;
 
 import org.concordion.api.Resource;
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
 import org.concordion.api.extension.ConcordionExtensionFactory;
+import org.concordion.ext.annotate.TooltipRenderingListener;
 
 /**
  * Annotates the Concordion HTML output with logging information captured using java.util.logging. See <a href="http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html">this blog entry</a> for details and screenshots.
@@ -18,7 +18,7 @@ import org.concordion.api.extension.ConcordionExtensionFactory;
  * <p>
  * To install the extension:
  * <pre>
- *       System.setProperty("concordion.extensions", "nz.co.twoten.concordion.LoggingTooltipExtension");
+ *       System.setProperty("concordion.extensions", "org.concordion.ext.LoggingTooltipExtension");
  * </pre>
  * <h4>Custom Configuration</h4>
  * The extension can be customised using an {@link ConcordionExtensionFactory} to call the custom constructor. The logging can be restricted to named loggers,
@@ -29,7 +29,7 @@ import org.concordion.api.extension.ConcordionExtensionFactory;
  * package carbon;
  * 
  * import java.util.logging.Level;
- * import nz.co.twoten.concordion.LoggingTooltipExtension;
+ * import org.concordion.ext.LoggingTooltipExtension;
  * import org.concordion.api.extension.ConcordionExtension;
  * import org.concordion.api.extension.ConcordionExtensionFactory;
  * 
@@ -50,15 +50,15 @@ import org.concordion.api.extension.ConcordionExtensionFactory;
  */
 public class LoggingTooltipExtension implements ConcordionExtension {
 
-    private static final String TOOLTIP_CSS_SOURCE_PATH = "/nz/co/twoten/resource/tooltip.css";
+    private static final String TOOLTIP_CSS_SOURCE_PATH = "/org/concordion/ext/resource/tooltip.css";
     private static final Resource TOOLTIP_CSS_TARGET_RESOURCE = new Resource("/tooltip.css");
 
     private static final Resource BUBBLE_FILLER_IMAGE_RESOURCE = new Resource("/image/bubble_filler.gif");
-    private static final String BUBBLE_FILLER_RESOURCE_PATH = "/nz/co/twoten/resource/bubble_filler.gif";
+    private static final String BUBBLE_FILLER_RESOURCE_PATH = "/org/concordion/ext/resource/bubble_filler.gif";
     private static final Resource BUBBLE_IMAGE_RESOURCE = new Resource("/image/bubble.gif");
-    private static final String BUBBLE_RESOURCE_PATH = "/nz/co/twoten/resource/bubble.gif";
+    private static final String BUBBLE_RESOURCE_PATH = "/org/concordion/ext/resource/bubble.gif";
     private static final Resource INFO_IMAGE_RESOURCE = new Resource("/image/info16.png");
-    private static final String INFO_RESOURCE_PATH = "/nz/co/twoten/resource/i16.png";
+    private static final String INFO_RESOURCE_PATH = "/org/concordion/ext/resource/i16.png";
     
     private final String loggerNames;
     private final boolean displayRootConsoleLogging;

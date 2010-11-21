@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 group   = 'nz.co.twoten'
-version = '1.0.0'
+version = '1.0.1'
 archivesBaseName = 'concordion-extensions'
 eclipseProject.projectName = 'concordion-extensions'
 

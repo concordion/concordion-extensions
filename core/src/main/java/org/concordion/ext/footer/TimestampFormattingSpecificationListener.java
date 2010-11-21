@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.footer;
+package org.concordion.ext.footer;
 
 import org.concordion.api.Element;
 import org.concordion.api.listener.SpecificationProcessingEvent;

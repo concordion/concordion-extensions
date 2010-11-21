@@ -1,16 +1,16 @@
-package nz.co.twoten.concordion;
+package org.concordion.ext;
 
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
 
 /**
  * Installs all of the extensions in this package.
- * <p>To add all of the extensions, set the system property <code>concordion.extensions</code> to <code>nz.co.twoten.concordion.Extensions</code>.
+ * <p>To add all of the extensions, set the system property <code>concordion.extensions</code> to <code>org.concordion.ext.Extensions</code>.
  * This is typically set in the &#064;BeforeClass of a base test case:</p>
  * <pre>
  *   &#064;BeforeClass
  *   public static void addExtensions() {
- *       System.setProperty("concordion.extensions", "nz.co.twoten.concordion.Extensions");
+ *       System.setProperty("concordion.extensions", "org.concordion.ext.Extensions");
  *   }
  * </pre>
  * <p>The extensions may also be installed individually and have a number of customisation options. See the Javadoc of each extension for details.</p>

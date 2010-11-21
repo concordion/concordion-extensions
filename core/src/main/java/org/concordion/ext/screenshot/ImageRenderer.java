@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.screenshot;
+package org.concordion.ext.screenshot;
 
 import org.concordion.api.Element;
 

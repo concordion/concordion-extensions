@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion;
+package org.concordion.ext;
 
 import java.io.IOException;
 import java.io.OutputStream;

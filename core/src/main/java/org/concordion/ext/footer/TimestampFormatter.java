@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.footer;
+package org.concordion.ext.footer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

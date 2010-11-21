@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.annotate;
+package org.concordion.ext.annotate;
 
 import org.concordion.api.Element;
 import org.concordion.api.Resource;

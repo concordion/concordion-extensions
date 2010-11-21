@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion.screenshot;
+package org.concordion.ext.screenshot;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
@@ -11,7 +11,8 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
-import nz.co.twoten.concordion.ScreenshotTaker;
+import org.concordion.ext.ScreenshotTaker;
+
 
 /**
  * Takes screenshots using {@link java.awt.Robot}.

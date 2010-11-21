@@ -1,4 +1,4 @@
-package nz.co.twoten.jul.formatter;
+package org.concordion.ext.jul.formatter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

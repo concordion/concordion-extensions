@@ -1,4 +1,4 @@
-package nz.co.twoten.concordion;
+package org.concordion.ext;
 
 /**
  * Indicates that a screenshot is unavailable. 
