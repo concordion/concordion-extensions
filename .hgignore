@@ -1,0 +1,9 @@
+
+syntax: regexp
+^core/\.gradle$
+syntax: regexp
+^core/\.classpath$
+syntax: regexp
+^core/\.project$
+syntax: regexp
+^core/build$
