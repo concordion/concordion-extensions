@@ -19,7 +19,18 @@ public class ImageRenderer {
         "\n" +
         "function hide(id) {\n" +
         "  document.getElementById(id).style.visibility = 'hidden';\n" +
-        "}\n";
+        "}\n" + 
+        "function showScreenshotOn(e) {\n" + 
+        "  var targ;\n" + 
+        "  if (!e) var e = window.event;\n" + 
+        "  if (e.target) targ = e.target\n" + 
+        "  else if (e.srcElement) targ = e.srcElement\n" + 
+        "  if (targ.nodeType == 3) // defeat Safari bug\n" + 
+        "    targ = targ.parentNode;\n" + 
+        "  if (targ.nodeName == 'P')\n" + 
+        "    targ = targ.parentNode;\n" + 
+        "  return (targ.className.indexOf('stackTrace') != 0);\n" + 
+        "}";
 
     private final boolean hidden;
     private final int maxWidth;
@@ -46,9 +57,9 @@ public class ImageRenderer {
                     hoverElement = childElements[0];  // add hover to child span so that it co-exists nicely with log annotator extension on tables
                 }
             }
-            hoverElement.addAttribute("onMouseOver", "show('" + imageName + "');this.style.cursor='pointer'");
+            hoverElement.addAttribute("onMouseOver", "if (showScreenshotOn(event)) {show('" + imageName + "');this.style.cursor='pointer'}");
             hoverElement.addAttribute("onMouseOut",  "hide('" + imageName + "');this.style.cursor='default'");
-            hoverElement.addAttribute("onClick",     "hide('" + imageName + "');window.location.href='" + imageName + "';return false");
+            hoverElement.addAttribute("onClick",     "if (showScreenshotOn(event)) {hide('" + imageName + "');window.location.href='" + imageName + "'}");
         }
     
         element.appendChild(a);
