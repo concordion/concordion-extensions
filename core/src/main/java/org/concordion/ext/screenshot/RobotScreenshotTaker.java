@@ -13,11 +13,8 @@ import javax.imageio.ImageIO;
 
 import org.concordion.ext.ScreenshotTaker;
 
-
 /**
  * Takes screenshots using {@link java.awt.Robot}.
- * <p> 
- * This code was derived from Mark Derricutt's <a href="http://github.com/talios/concordion-examples/blob/master/src/test/java/com/talios/ScreenshotCommand.java">ScreenshotCommand</a>.
  */
 public class RobotScreenshotTaker implements ScreenshotTaker {
 
@@ -25,27 +22,18 @@ public class RobotScreenshotTaker implements ScreenshotTaker {
 
     @Override
     public int writeScreenshotTo(OutputStream outputStream) throws IOException {
-        Dimension screenSize = getScreenSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         BufferedImage image = getImage(screenSize);
         ImageIO.write(image, FILE_TYPE, outputStream);
         return (int) screenSize.getWidth();
     }
 
-    public BufferedImage getImage(Dimension dim) {
-        Robot rbt;
+    public BufferedImage getImage(Dimension size) {
         try {
-            rbt = new Robot();
+            return new Robot().createScreenCapture(new Rectangle(0, 0, (int) size.getWidth(), (int) size.getHeight()));
         } catch (AWTException e) {
             throw new RuntimeException(e);
         }
-        BufferedImage background = rbt.createScreenCapture(new Rectangle(0, 0, (int) dim.getWidth(), (int) dim.getHeight()));
-        return background;
-    }
-
-    private Dimension getScreenSize() {
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension dim = tk.getScreenSize();
-        return dim;
     }
 
     @Override
