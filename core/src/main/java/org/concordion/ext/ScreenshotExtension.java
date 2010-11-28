@@ -67,16 +67,16 @@ import org.concordion.ext.screenshot.ScreenshotEmbedder;
  * 
  * <h4>Using as a Command</h4>
  * To explicitly include a screenshot in your output, add an attribute named <code>screenshot</code> using the namespace
- * <code>"http://210.co.nz/2010/concordion"</code> to your Concordion HTML. For example: 
+ * <code>"http://www.concordion.org/2010/extension"</code> to your Concordion HTML. For example: 
  * <pre>
- * &lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:twoten="http://210.co.nz/2010/concordion"&gt;
+ * &lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:ext="http://www.concordion.org/2010/extension"&gt;
  * ....
- * &lt;div twoten:screenshot=""/&gt;
+ * &lt;div ext:screenshot=""/&gt;
  * ...
  * </pre> 
- * By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the attribute value to <code>linked</code>, for example:
+ * By default, the screenshot is embedded in the output HTML. If you'd rather have it linked, set the value of the <code>screenshot</code> attribute to <code>linked</code>, for example:
  * <pre>
- * &lt;p&gt;See &lt;span twoten:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
+ * &lt;p&gt;See &lt;span ext:screenshot="linked" style="text-decoration: underline;"&gt;this screen&lt;/span&gt;&lt;/p&gt;
  * </pre>
  * 
  * <h4>The Screenshot Taker</h4>
@@ -87,7 +87,7 @@ import org.concordion.ext.screenshot.ScreenshotEmbedder;
 public class ScreenshotExtension implements ConcordionExtension {
 
     public static final String COMMAND_NAME = "screenshot";
-    public static final String EXTENSION_NAMESPACE = "http://210.co.nz/2010/concordion";
+    public static final String EXTENSION_NAMESPACE = "http://www.concordion.org/2010/extension";
 
     private ScreenshotEmbedder extension = new ScreenshotEmbedder();
     
