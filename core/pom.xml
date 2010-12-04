@@ -4,7 +4,7 @@
   <artifactId>concordion-extensions</artifactId>
   <packaging>jar</packaging>
   <name>concordion-extensions</name>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <description>
     This project adds features to Concordion acceptance tests, such as embedding screenshots or logging information in the output.
