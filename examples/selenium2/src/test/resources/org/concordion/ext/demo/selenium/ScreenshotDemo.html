@@ -1,0 +1,18 @@
+<html xmlns:c="http://www.concordion.org/2007/concordion">
+<link href="../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+<h1>All Whites</h1>
+
+<p>As an All Whites fan, I want Google to return the right answers so I can gloat.</p> 
+
+<div class="example">
+<h4>Example</h4>
+<p c:execute="searchFor(#searchText)">Googling "<span c:set="#searchText">only undefeated team in 2010 world cup</span>" 
+<span c:assertEquals="#result1">displays</span> "<span c:execute="#result1 = resultsContainText(#TEXT)">New Zealand</span>"
+and <span c:assertEquals="#result2">does not display</span> "<span c:execute="#result2 = resultsContainText(#TEXT)">Netherlands</span>".
+</p>
+</div>
+
+</body>
+</html>

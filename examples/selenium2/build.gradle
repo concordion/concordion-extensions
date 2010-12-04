@@ -1,0 +1,31 @@
+// Tested with gradle-0.9-rc-1
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
+
+repositories {
+    mavenCentral()
+//    flatDir dirs:'lib'
+}
+
+slf4jVersion    = '1.6.1'
+seleniumVersion = '2.0a6'
+
+dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:1.7.2'
+
+    testCompile 'org.concordion:concordion:1.4.1',
+                'org.concordion:concordion-extensions:1.0.1-SNAPSHOT',
+                "org.seleniumhq.selenium:selenium-common:$seleniumVersion",
+                "org.seleniumhq.selenium:selenium-support:$seleniumVersion",
+                "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion",
+                "org.slf4j:slf4j-api:$slf4jVersion"
+                
+    runtime "org.slf4j:slf4j-jdk14:$slf4jVersion"
+}
+
+test {
+    include '**/*Test.*'
+//    systemProperties['concordion.output.dir'] = "$reportsDir/spec"
+}
