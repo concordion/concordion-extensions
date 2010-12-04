@@ -8,7 +8,7 @@
   <version>1.0.1-SNAPSHOT</version>
 
   <description>
-    This project enables extra features in Concordion, such as embedding screenshots or logging information in the output.
+    This project adds features to Concordion acceptance tests, such as embedding screenshots or logging information in the output.
   </description>
 
   <url>http://concordion-extensions.googlecode.com</url>
