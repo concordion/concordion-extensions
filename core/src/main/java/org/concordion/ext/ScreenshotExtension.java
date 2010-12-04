@@ -67,9 +67,9 @@ import org.concordion.ext.screenshot.ScreenshotEmbedder;
  * 
  * <h4>Using as a Command</h4>
  * To explicitly include a screenshot in your output, add an attribute named <code>screenshot</code> using the namespace
- * <code>"http://www.concordion.org/2010/extension"</code> to your Concordion HTML. For example: 
+ * <code>"urn:concordion-extensions:2010"</code> to your Concordion HTML. For example: 
  * <pre>
- * &lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:ext="http://www.concordion.org/2010/extension"&gt;
+ * &lt;html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:ext="urn:concordion-extensions:2010"&gt;
  * ....
  * &lt;div ext:screenshot=""/&gt;
  * ...
@@ -87,7 +87,7 @@ import org.concordion.ext.screenshot.ScreenshotEmbedder;
 public class ScreenshotExtension implements ConcordionExtension {
 
     public static final String COMMAND_NAME = "screenshot";
-    public static final String EXTENSION_NAMESPACE = "http://www.concordion.org/2010/extension";
+    public static final String EXTENSION_NAMESPACE = "urn:concordion-extensions:2010";
 
     private ScreenshotEmbedder extension = new ScreenshotEmbedder();
     
