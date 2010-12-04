@@ -1,4 +1,7 @@
 
+Introduction
+============
+
 Demonstrates the usage of Concordion extensions with Selenium2 (also known as WebDriver).
 
 1. LoggingDemo demonstrates the LoggingTooltipExtension. 
@@ -8,11 +11,31 @@ Demonstrates the usage of Concordion extensions with Selenium2 (also known as We
    The SeleniumScreenshotTaker class uses Selenium's TakesScreenshot interface to take a 
    custom screenshot of the web page.
 
-To build and run the Concordion tests:
+NOTE: Most of the demo code has been written using Groovy.  This is not required, and the code could have been written with plain Java instead. 
+
+Running the Concordion tests
+============================
+The tests use Selenium's FirefoxDriver, so rely on Firefox being installed.
+
+You can run build the tests using either Gradle or Maven.  
+
+Using Gradle:
   - Download and install gradle 0.9-rc-1
   - Unzip this package
   - From a command line: 
         gradle test
+  - view the Concordion output under the subfolder 'build/reports/spec/org/concordion/ext/demo/selenium/' of the project folder
+
+Using Maven:
+  - Download and install maven
+  - Unzip this package
+  - From a command line: 
+        mvn test
+  - view the Concordion output under the subfolder 'target/concordion/org/concordion/ext/demo/selenium/' of the project folder 
+
+
+Generating an Eclipse Project
+=============================
         
 To generate an Eclipse project:
   - Download and install gradle 0.9-rc-1
