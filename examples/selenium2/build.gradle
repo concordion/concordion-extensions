@@ -6,11 +6,11 @@ eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 
 repositories {
     mavenCentral()
-// For SNAPSHOTs    mavenRepo urls: 'http://concordion.googlecode.com/svn/repos/snapshots'
+	mavenRepo urls: 'http://concordion.googlecode.com/svn/repos/snapshots'
 }
 
 slf4jVersion    = '1.6.1'
-seleniumVersion = '2.0a6'
+seleniumVersion = '2.0a7'
 
 dependencies {
     groovy 'org.codehaus.groovy:groovy-all:1.7.2'
@@ -27,5 +27,5 @@ dependencies {
 
 test {
     include '**/*Test.*'
-//    systemProperties['concordion.output.dir'] = "$reportsDir/spec"
+    systemProperties['concordion.output.dir'] = "$reportsDir/spec"
 }
