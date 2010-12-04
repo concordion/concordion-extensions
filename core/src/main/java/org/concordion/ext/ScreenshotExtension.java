@@ -29,7 +29,7 @@ import org.concordion.ext.screenshot.ScreenshotEmbedder;
  * 
  * import org.concordion.ext.ScreenshotExtension;
  * import org.concordion.ext.ScreenshotTaker;
- * import nz.co.twoten.selenium.logger.SeleniumScreenshotTaker;
+ * import org.concordion.ext.selenium.SeleniumScreenshotTaker;
  * 
  * import org.concordion.api.extension.ConcordionExtension;
  * import org.concordion.api.extension.ConcordionExtensionFactory;
