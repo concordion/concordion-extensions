@@ -6,7 +6,7 @@ eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 
 repositories {
     mavenCentral()
-//    flatDir dirs:'lib'
+// For SNAPSHOTs    mavenRepo urls: 'http://concordion.googlecode.com/svn/repos/snapshots'
 }
 
 slf4jVersion    = '1.6.1'
