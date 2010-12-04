@@ -3,12 +3,13 @@ package org.concordion.ext;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import org.concordion.api.Resource;
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
 import org.concordion.api.extension.ConcordionExtensionFactory;
-import org.concordion.ext.annotate.TooltipRenderingListener;
+import org.concordion.ext.logging.JavaUtilLogMessenger;
+import org.concordion.ext.logging.LogMessenger;
+import org.concordion.ext.logging.LogMessageTooltipWriter;
 
 /**
  * Annotates the Concordion HTML output with logging information captured using java.util.logging. See <a href="http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html">this blog entry</a> for details and screenshots.
@@ -87,7 +88,7 @@ public class LoggingTooltipExtension implements ConcordionExtension {
 
     @Override
     public void addTo(ConcordionExtender concordionExtender) {
-        TooltipRenderingListener extension = createExtension();
+        LogMessageTooltipWriter extension = createExtension();
 
         concordionExtender.withExecuteListener(extension).withAssertEqualsListener(extension).withAssertTrueListener(extension)
                 .withAssertFalseListener(extension).withVerifyRowsListener(extension).withThrowableListener(extension);
@@ -98,7 +99,8 @@ public class LoggingTooltipExtension implements ConcordionExtension {
         concordionExtender.withResource(INFO_RESOURCE_PATH, INFO_IMAGE_RESOURCE);
     }
 
-    private TooltipRenderingListener createExtension() {
-        return new TooltipRenderingListener(INFO_IMAGE_RESOURCE, loggerNames, loggingLevel, displayRootConsoleLogging);
+    private LogMessageTooltipWriter createExtension() {
+        LogMessenger logMessenger = new JavaUtilLogMessenger(loggerNames, loggingLevel, displayRootConsoleLogging);
+        return new LogMessageTooltipWriter(INFO_IMAGE_RESOURCE, logMessenger);
     }
 }

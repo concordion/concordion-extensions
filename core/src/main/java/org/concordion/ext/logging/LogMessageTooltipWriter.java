@@ -1,12 +1,4 @@
-package org.concordion.ext.annotate;
-
-import java.io.ByteArrayOutputStream;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.StreamHandler;
-
+package org.concordion.ext.logging;
 
 import org.concordion.api.Element;
 import org.concordion.api.Resource;
@@ -25,40 +17,21 @@ import org.concordion.api.listener.SurplusRowEvent;
 import org.concordion.api.listener.ThrowableCaughtEvent;
 import org.concordion.api.listener.ThrowableCaughtListener;
 import org.concordion.api.listener.VerifyRowsListener;
-import org.concordion.ext.jul.formatter.TimeAndMessageFormatter;
+import org.concordion.ext.tooltip.TooltipRenderer;
 
-public class TooltipRenderingListener implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
+/**
+ * Writes any new log messages to tooltips when invoked by Concordion events.   
+ */
+public class LogMessageTooltipWriter implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ExecuteListener,
         SpecificationProcessingListener, VerifyRowsListener, ThrowableCaughtListener {
 
-    private final ByteArrayOutputStream baos;
-    private final StreamHandler streamHandler;
     private final TooltipRenderer renderer;
-
+    private final LogMessenger logMessenger;
     private Resource resource;
 
-    public TooltipRenderingListener(Resource iconResource, String loggerNames, Level loggingLevel, boolean displayRootConsoleLogging) {
-        baos = new ByteArrayOutputStream(4096);
-        streamHandler = new StreamHandler(baos, new TimeAndMessageFormatter());
-        streamHandler.setLevel(loggingLevel);
-        for (String loggerName : loggerNames.split(",")) {
-            Logger logger = Logger.getLogger(loggerName.trim());
-            logger.addHandler(streamHandler);
-        }
+    public LogMessageTooltipWriter(Resource iconResource, LogMessenger logMessenger) {
+        this.logMessenger = logMessenger;
         renderer = new TooltipRenderer(iconResource);
-        if (!displayRootConsoleLogging) {
-            removeRootConsoleHandler();
-        }
-    }
-
-    private  void removeRootConsoleHandler() {
-        Logger logger = Logger.getLogger("");
-        Handler[] handlers = logger.getHandlers();
-        for (Handler handler : handlers) {
-            if (handler instanceof ConsoleHandler) {
-                System.out.println("LoggingTooltipExtension: removing root console logging handler");
-                logger.removeHandler(handler);
-            }
-        }
     }
 
     @Override
@@ -68,6 +41,7 @@ public class TooltipRenderingListener implements AssertEqualsListener, AssertTru
 
     @Override
     public void afterProcessingSpecification(SpecificationProcessingEvent event) {
+        resource = null;
     }
 
     @Override
@@ -104,17 +78,10 @@ public class TooltipRenderingListener implements AssertEqualsListener, AssertTru
     }
 
     private void renderLogMessages(Element element) {
-        String text = getLogMessages();
+        String text = logMessenger.getNewLogMessages();
 
         if (text.length() > 0) {
-            renderer.hoverText(resource, element, text);
+            renderer.renderTooltip(resource, element, text);
         }
-    }
-
-    private String getLogMessages() {
-        streamHandler.flush();
-        String text = baos.toString();
-        baos.reset();
-        return text;
     }
 }
