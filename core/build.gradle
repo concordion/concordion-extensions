@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-group   = 'nz.co.twoten'
+group   = 'org.concordion'
 version = '1.0.1'
 archivesBaseName = 'concordion-extensions'
 eclipseProject.projectName = 'concordion-extensions'
@@ -11,5 +11,5 @@ repositories {
 }
 
 dependencies {
-    compile "org.concordion:concordion:1.4.0"
+    compile "org.concordion:concordion:1.4.1"
 }
