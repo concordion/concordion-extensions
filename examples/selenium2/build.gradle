@@ -2,6 +2,8 @@
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
+version = '1.0.1'
+archivesBaseName = 'concordion-extensions-demo'
 eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 
 repositories {
@@ -22,6 +24,12 @@ dependencies {
                 "org.slf4j:slf4j-api:$slf4jVersion"
                 
     runtime "org.slf4j:slf4j-jdk14:$slf4jVersion"
+}
+
+task createDistZip(type: Zip) {
+    from '.'
+    exclude '.*'
+    exclude 'bin', 'build', 'target'
 }
 
 test {
