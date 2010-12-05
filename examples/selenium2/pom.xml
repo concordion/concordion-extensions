@@ -6,7 +6,40 @@
   <groupId>org.concordion</groupId>
   <artifactId>extensions-demo-selenium2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <description></description>
+
+  <description>
+    Sample Concordion tests using extensions from the concordion-extensions project.
+  </description>
+
+  <url>http://concordion-extensions.googlecode.com</url>
+
+  <issueManagement>
+    <system>GoogleCode</system>
+    <url>http://code.google.com/p/concordion-extensions/issues</url>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>http://code.google.com/p/concordion-extensions/source/browse/demo/selenium2</url>
+    <connection>scm:hg:http://concordion-extensions.googlecode.com/hg/demo/selenium2</connection>
+    <developerConnection>scm:hg:https://concordion-extensions.googlecode.com/hg/demo/selenium2</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>nigel.charman.nz</id>
+      <roles>
+        <role>Project owner</role>
+      </roles>
+    </developer>
+  </developers>
 
   <dependencyManagement>
     <dependencies>
@@ -27,7 +60,7 @@
     <dependency>
       <groupId>org.concordion</groupId>
       <artifactId>concordion-extensions</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>${concordion-extensions.version}</version>
       <scope>test</scope>
     </dependency>
 
@@ -126,5 +159,6 @@
     <groovy.version>1.7.0</groovy.version>
     <selenium.version>2.0a7</selenium.version>
     <slf4j.version>1.6.1</slf4j.version>    
+    <concordion-extensions.version>1.0.1</concordion-extensions.version>
   </properties>
 </project>
