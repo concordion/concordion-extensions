@@ -1,8 +1,8 @@
-// Tested with gradle-0.9-rc-1
+// Tested with gradle-0.9
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
-version = '1.0.1'
+version = '1.0.1.1'
 archivesBaseName = 'concordion-extensions-demo'
 eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 
@@ -12,10 +12,10 @@ repositories {
 }
 
 slf4jVersion    = '1.6.1'
-seleniumVersion = '2.0a7'
+seleniumVersion = '2.0b1'
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:1.7.2'
+    groovy 'org.codehaus.groovy:groovy-all:1.7.6'
 
     testCompile 'org.concordion:concordion-extensions:1.0.1',
                 "org.seleniumhq.selenium:selenium-common:$seleniumVersion",

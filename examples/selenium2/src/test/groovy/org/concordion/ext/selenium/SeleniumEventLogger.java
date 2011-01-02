@@ -85,12 +85,15 @@ public class SeleniumEventLogger implements WebDriverEventListener {
     }
 
     private String getElementName(WebElement arg0) {
-        String id = arg0.getAttribute("id");
-        if (id != null && !id.isEmpty())
-            return id;
-        String name = arg0.getAttribute("name");
-        if (name != null && !name.isEmpty())
-            return name;
+        try {
+            String id = arg0.getAttribute("id");
+            if (id != null && !id.isEmpty())
+                return id;
+            String name = arg0.getAttribute("name");
+            if (name != null && !name.isEmpty())
+                return name;
+        } catch (Exception ignore) {
+        }
         return "unknown";
     }
 }

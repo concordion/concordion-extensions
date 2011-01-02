@@ -16,15 +16,15 @@ import org.openqa.selenium.support.ui.WebDriverWait
 class GoogleResultsPage {
 	
     @CacheLookup
-	@FindBy(how = How.ID, using = "res") 
+	@FindBy(id = "res") 
 	private WebElement resultWrapper
 
     @CacheLookup
-	@FindBy(how = How.CLASS_NAME, using = "l")
+	@FindBy(className = "l")
 	private WebElement firstResultLink
 	
     @CacheLookup
-    @FindBy(how = How.CLASS_NAME, using = "r")
+    @FindBy(className = "r")
     private WebElement calcResultLink
 
     private Site site

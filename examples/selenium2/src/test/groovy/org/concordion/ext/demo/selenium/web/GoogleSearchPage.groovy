@@ -17,11 +17,11 @@ import org.openqa.selenium.support.ui.WebDriverWait
 class GoogleSearchPage {
 	
     @CacheLookup
-	@FindBy(how = How.NAME, using = "q") 
+	@FindBy(name = "q") 
 	private WebElement queryBox
 	
     @CacheLookup
-	@FindBy(how = How.NAME, using = "btnG") 
+	@FindBy(name = "btnG") 
 	private WebElement submitButton
 	
 	private Site site

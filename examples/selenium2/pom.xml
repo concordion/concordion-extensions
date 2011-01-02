@@ -4,8 +4,8 @@
                       http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.concordion</groupId>
-  <artifactId>extensions-demo-selenium2</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>concordion-extensions-demo-selenium2</artifactId>
+  <version>1.0.1.1</version>
 
   <description>
     Sample Concordion tests using extensions from the concordion-extensions project.
@@ -156,8 +156,8 @@
 
   <properties>
     <gmaven.version>1.3</gmaven.version>
-    <groovy.version>1.7.0</groovy.version>
-    <selenium.version>2.0a7</selenium.version>
+    <groovy.version>1.7.6</groovy.version>
+    <selenium.version>2.0b1</selenium.version>
     <slf4j.version>1.6.1</slf4j.version>    
     <concordion-extensions.version>1.0.1</concordion-extensions.version>
   </properties>
