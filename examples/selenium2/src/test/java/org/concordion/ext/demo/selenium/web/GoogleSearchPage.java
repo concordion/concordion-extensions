@@ -36,7 +36,8 @@ public class GoogleSearchPage {
      * waiting for the page to fully load. 
      */
 	public GoogleResultsPage searchFor(String query) {
-		queryBox.sendKeys(query);
+        queryBox.sendKeys(query);
+        queryBox.sendKeys(Keys.ESCAPE);
 		submitButton.click();
 		return new GoogleResultsPage(driver);
 	}
