@@ -21,7 +21,7 @@ public class ElementPresent implements ExpectedCondition<WebElement> {
 	public WebElement apply(WebDriver driver) {
 	    WebElement element = driver.findElement(locator);
 	    if (!((RenderedWebElement)element).isDisplayed()) {
-	    	throw new NotFoundException("Element not displayed");
+	    	throw new NotFoundException("Element is not displayed");
 	    }
 		return element;
 	    

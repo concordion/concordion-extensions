@@ -10,13 +10,28 @@ import org.slf4j.LoggerFactory;
 public class SeleniumEventLogger implements WebDriverEventListener {
 
     final Logger logger = LoggerFactory.getLogger("selenium.events");
+    private String oldValue;
+
+    @Override
+    public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
+        oldValue = arg0.getValue();
+    }
 
     @Override
     public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
-        if (arg0.getValue().isEmpty()) {
-            logger.info("Cleared value of {}", getElementName(arg0));
-        } else {
-            logger.info("Changed value of {} to {}", getElementName(arg0), arg0.getValue());
+        String elementName = getElementName(arg0);
+        String newValue = "";
+        try {
+            newValue = arg0.getValue();
+            if (!newValue.equals(oldValue)) {
+                if (newValue.isEmpty()) {
+                    logger.info("Cleared value of {}", elementName);
+                } else {
+                    logger.info("Changed value of {} to {}", elementName, newValue);
+                }
+            }
+        } catch (Exception e) {
+            logger.info("Changed value of {}", elementName);
         }
     }
 
@@ -47,10 +62,6 @@ public class SeleniumEventLogger implements WebDriverEventListener {
     @Override
     public void afterScript(String arg0, WebDriver arg1) {
         logger.info("Ran script '{}'", arg0);
-    }
-
-    @Override
-    public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
     }
 
     @Override

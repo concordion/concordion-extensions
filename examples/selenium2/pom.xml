@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.concordion</groupId>
   <artifactId>concordion-extensions-demo-selenium2</artifactId>
-  <version>1.0.1.1</version>
+  <version>1.0.1.2</version>
 
   <description>
     Sample Concordion tests using extensions from the concordion-extensions project.
@@ -35,6 +35,7 @@
   <developers>
     <developer>
       <id>nigel.charman.nz</id>
+      <email>nigel.charman.nz@gmail.com</email>
       <roles>
         <role>Project owner</role>
       </roles>
@@ -102,30 +103,6 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.gmaven</groupId>
-          <artifactId>gmaven-plugin</artifactId>
-          <version>${gmaven.version}</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>generateStubs</goal>
-                <goal>compile</goal>
-                <goal>generateTestStubs</goal>
-                <goal>testCompile</goal>
-              </goals>
-              <configuration>
-                <!-- providerSelection probably defaults to 1.7 now -->
-                <providerSelection>1.7</providerSelection>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -146,18 +123,11 @@
           </systemProperties>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>gmaven-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
 
   <properties>
-    <gmaven.version>1.3</gmaven.version>
-    <groovy.version>1.7.6</groovy.version>
-    <selenium.version>2.0b1</selenium.version>
+    <selenium.version>2.0b2</selenium.version>
     <slf4j.version>1.6.1</slf4j.version>    
     <concordion-extensions.version>1.0.1</concordion-extensions.version>
   </properties>

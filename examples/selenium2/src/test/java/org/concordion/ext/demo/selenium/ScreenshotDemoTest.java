@@ -1,4 +1,4 @@
-package org.concordion.ext.demo.selenium
+package org.concordion.ext.demo.selenium;
 
 import org.concordion.api.ExpectedToFail;
 import org.concordion.ext.TimestampFormatterExtension;
@@ -28,25 +28,25 @@ import org.junit.runner.RunWith;
 @ExpectedToFail
 public class ScreenshotDemoTest extends GoogleFixture {
 	
- 	GoogleResultsPage resultsPage 
+ 	private GoogleResultsPage resultsPage; 
 
     @Before
-    void loadExtensions() {
-        ScreenshotExtensionFactory.setDriver(site.driver);
-        System.setProperty("concordion.extensions", "org.concordion.ext.selenium.ScreenshotExtensionFactory, org.concordion.ext.TimestampFormatterExtension") 
+    public void loadExtensions() {
+        ScreenshotExtensionFactory.setDriver(site.getDriver());
+        System.setProperty("concordion.extensions", "org.concordion.ext.selenium.ScreenshotExtensionFactory, org.concordion.ext.TimestampFormatterExtension"); 
     }
  
 	/**
 	 * Searches for the specified topic, and waits for the results page to load.
 	 */
-	void searchFor(String topic) {
-		resultsPage = searchPage.searchFor(topic)
+    public void searchFor(String topic) {
+		resultsPage = searchPage.searchFor(topic);
 	}
 	
 	/**
 	 * Checks whether the specified text occurs in any result on the results page.
 	 */
-	String resultsContainText(String text) {
-		return resultsPage.resultsContain(text) ? "displays" : "does not display"
+    public String resultsContainText(String text) {
+		return resultsPage.resultsContain(text) ? "displays" : "does not display";
 	}
 }

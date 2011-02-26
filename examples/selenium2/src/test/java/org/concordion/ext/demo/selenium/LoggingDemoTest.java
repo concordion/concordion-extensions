@@ -1,10 +1,9 @@
-package org.concordion.ext.demo.selenium
+package org.concordion.ext.demo.selenium;
 
-import org.concordion.ext.demo.selenium.web.GoogleResultsPage
-import org.concordion.integration.junit4.ConcordionRunner
-import org.junit.Before 
-import org.junit.runner.RunWith
-
+import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
+import org.concordion.integration.junit4.ConcordionRunner;
+import org.junit.Before;
+import org.junit.runner.RunWith;
 
 /**
  * A fixture class for the LoggingDemo.html specification.
@@ -20,28 +19,28 @@ import org.junit.runner.RunWith
 @RunWith(ConcordionRunner.class)
 public class LoggingDemoTest extends GoogleFixture {
 	
- 	GoogleResultsPage resultsPage 
+ 	GoogleResultsPage resultsPage;
 
-    LoggingDemoTest() {
+ 	public LoggingDemoTest() {
         super(true);
     }
     
     @Before
-    void loadExtensions() {
-        System.setProperty("concordion.extensions", "org.concordion.ext.LoggingTooltipExtension") 
+    public void loadExtensions() {
+        System.setProperty("concordion.extensions", "org.concordion.ext.LoggingTooltipExtension"); 
     }
  
 	/**
 	 * Searches for the specified topic, and waits for the results page to load.
 	 */
-	void searchFor(String topic) {
-		resultsPage = searchPage.searchFor(topic)
+	public void searchFor(String topic) {
+		resultsPage = searchPage.searchFor(topic);
 	}
 	
 	/**
 	 * Returns the result from Google calculation.
 	 */
-	String getCalculatorResult() {
-		return resultsPage.getCalculatorResult()
+	public String getCalculatorResult() {
+		return resultsPage.getCalculatorResult();
 	}
 }
