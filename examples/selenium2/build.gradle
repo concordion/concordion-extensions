@@ -13,7 +13,7 @@ repositories {
 }
 
 slf4jVersion    = '1.6.1'
-seleniumVersion = '2.0b2'
+seleniumVersion = '2.0b1'
 
 dependencies {
     testCompile 'org.concordion:concordion-extensions:1.0.1',

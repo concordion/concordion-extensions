@@ -42,22 +42,7 @@
     </developer>
   </developers>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-all</artifactId>
-        <version>${groovy.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-    </dependency>
-    
     <dependency>
       <groupId>org.concordion</groupId>
       <artifactId>concordion-extensions</artifactId>
@@ -127,7 +112,7 @@
   </build>
 
   <properties>
-    <selenium.version>2.0b2</selenium.version>
+    <selenium.version>2.0b1</selenium.version>
     <slf4j.version>1.6.1</slf4j.version>    
     <concordion-extensions.version>1.0.1</concordion-extensions.version>
   </properties>
