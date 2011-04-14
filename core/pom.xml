@@ -5,7 +5,7 @@
   <artifactId>concordion-extensions</artifactId>
   <packaging>jar</packaging>
   <name>concordion-extensions</name>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
 
   <description>
     This project adds features to Concordion acceptance tests, such as embedding screenshots or logging information in the output.
@@ -112,12 +112,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.5</version>
         <configuration>
-          <systemProperties>
-            <property>
-              <name>concordion.output.dir</name>
-              <value>target/concordion</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables>
+            <concordion.output.dir>target/concordion</concordion.output.dir>
+          </systemPropertyVariables>
           <includes>
             <include>**/*Test.java</include>
             <include>spec/**Test.java</include>

@@ -1,0 +1,55 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<head>
+<style type="text/css">
+tt, tt *, pre, code, pre *, code * {
+  font-family: Courier New, Courier, Fixed;
+  font-size: 10pt;
+}
+pre {
+  padding: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+pre.java {
+    background-color: #e4eefc;
+}
+pre.html {
+    background-color: #ffffd9;
+    border: 1px solid #ededdf;
+}
+</style>
+</head>    
+
+<body>
+
+  <h1>Screenshot Customisation</h1>
+
+  <p>The Screenshot extension can be customised using a ConcordionExtensionFactory. For example, it can use a custom ScreenshotTaker, take screenshots on assertion success as well as failure, and limit the maximum width of the screenshot images on mouse hover.
+
+  </p>
+
+  <div class="example">
+        <h3>Example - Creating a screenshot on successful assertions, and changing width</h3>
+        <p concordion:execute="setSystemProperty(#key, #value)">Given the system property <code concordion:set="#key">concordion.extensions</code>
+        is set to the class <code concordion:set="#value">spec.concordion.ext.screenshot.ScreenshotExtensionFactory</code>
+        , which sets screenshots to appear on successful assertions, and limits the max width to 400 pixels.</p>
+          
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="acronym"&gt;ABC&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet, #actualValue)">When run with a fixture that returns an <code>acroynm</code> value of <code concordion:set="#actualValue">ABC</code>, it becomes:</p>
+        
+        <pre class="html" concordion:assertEquals="#fragment">
+&lt;p concordion:assertEquals="acronym" class="success" _
+ <b>onMouseOver="if (showScreenshotOn(event)) {show('testrig_img1.jpg');this.style.cursor='pointer'}" _
+ onMouseOut="hide('testrig_img1.jpg');this.style.cursor='default'" _
+ onClick="if (showScreenshotOn(event)) {hide('testrig_img1.jpg');window.location.href='testrig_img1.jpg'}</b>"&gt; _
+ABC _
+&lt;a href="testrig_img1.jpg"&gt;&lt;img id="testrig_img1.jpg" src="testrig_img1.jpg" <b>width="400"</b> class="screenshot" /&gt; _
+&lt;/a&gt; _
+&lt;/p&gt;
+</pre>
+</div>
+
+</body>
+</html>

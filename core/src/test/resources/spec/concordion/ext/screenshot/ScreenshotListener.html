@@ -1,0 +1,113 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<head>
+<script>
+/* Stack Trace Toggling - Explicitly add this to make the View stack trace button work since the exception example embeds the HTML from an example that is called externally from this spec. */
+
+function getElementById(id) {
+  var element;
+
+  if (document.getElementById) { // standard
+    return document.getElementById(id);
+  } else if (document.all) { // old IE versions
+    return document.all[id];
+  } else if (document.layers) { // nn4
+    return document.layers[id];
+  }
+  alert("Sorry, but your web browser is not supported by Concordion.");
+}
+
+function isVisible(element) {
+  return element.style.display;
+}
+
+function makeVisible(element) {
+  element.style.display = "block";
+}
+
+function makeInvisible(element) {
+  element.style.display = "";
+}
+
+function toggleStackTrace(stackTraceNumber) {
+  var stackTrace = getElementById("stackTrace" + stackTraceNumber);
+  var stackTraceButton = getElementById("stackTraceButton" + stackTraceNumber);
+  if (isVisible(stackTrace)) {
+    makeInvisible(stackTrace);
+    stackTraceButton.value = "View Stack";
+  } else {
+    makeVisible(stackTrace);
+    stackTraceButton.value = "Hide Stack";
+  }
+}
+</script>
+</head>
+<body>
+
+  <h1>Screenshot Listener</h1>
+
+  <p>The Screenshot extension can act as a listener to Concordion commands. It invokes a <code>ScreenshotTaker</code> to save the image to file, 
+  then decorates the HTML element containing the command with attributes to show the image. The attributes display the image when it is hovered over, and open it up in
+  a browser when clicked.</p>
+  
+  
+  <p>By default, it captures a screenshot whenever an assertion fails, or an uncaught Throwable occurs.</p>
+  
+  <div class="example">
+        <h3>Example - Failure</h3>
+        
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="acronym"&gt;ABC&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=renderAsFailure(#snippet, #actualValue)">When run with a fixture that returns an <code>acroynm</code> value of <code concordion:set="#actualValue">XYZ</code>, it becomes:</p>
+        
+        <pre class="html" concordion:assertEquals="#fragment">
+&lt;p concordion:assertEquals="acronym" class="failure" _
+ onMouseOver="if (showScreenshotOn(event)) {show('ScreenshotListener_img1.jpg');this.style.cursor='pointer'}" _
+ onMouseOut="hide('ScreenshotListener_img1.jpg');this.style.cursor='default'" _
+ onClick="if (showScreenshotOn(event)) {hide('ScreenshotListener_img1.jpg');window.location.href='ScreenshotListener_img1.jpg'}"&gt; _
+&lt;del class="expected"&gt;ABC&lt;/del&gt; 
+&lt;ins class="actual"&gt;XYZ&lt;/ins&gt; _
+&lt;a href="ScreenshotListener_img1.jpg"&gt;&lt;img id="ScreenshotListener_img1.jpg" src="ScreenshotListener_img1.jpg" width="600" class="screenshot" /&gt; _
+&lt;/a&gt; _
+&lt;/p&gt;
+</pre>
+
+<p>The output looks like:</p>
+<div cx:embed="#fragment" ></div>
+<p style="font-style: italic;">(Hover over or click on the red failure to see the screenshot)</p>
+</div>
+
+  <div class="example">
+        <h3>Example - Exception</h3>
+        
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="divide(1, 0)"&gt;infinity&lt;/p&gt;</pre>
+        
+        <p concordion:execute="#fragment=renderAsFailure(#snippet, #actualValue)">When an exception occurs in the <code>divideByZero()</code> fixture method, the HTML output with the stack traces removed is:</p>
+        
+        <pre class="html" concordion:assertEquals="removeStackTraces(#fragment)">
+&lt;p concordion:assertEquals="divide(1, 0)" _
+ onMouseOver="if (showScreenshotOn(event)) {show('ScreenshotListener_img1.jpg');this.style.cursor='pointer'}" _
+ onMouseOut="hide('ScreenshotListener_img1.jpg');this.style.cursor='default'" _
+ onClick="if (showScreenshotOn(event)) {hide('ScreenshotListener_img1.jpg');window.location.href='ScreenshotListener_img1.jpg'}"&gt; _
+&lt;span class="failure"&gt;&lt;del class="expected"&gt;infinity&lt;/del&gt;&lt;/span&gt; _
+&lt;span class="exceptionMessage"&gt;Invalid expression [divide(1, 0)]&lt;/span&gt; _
+&lt;input class="stackTraceButton" id="stackTraceButton1" type="button" onclick="javascript:toggleStackTrace('1')" value="View Stack" /&gt; _
+&lt;span class="stackTrace" id="stackTrace1"&gt;&lt;p&gt;While evaluating expression: &lt;code&gt;divide(1, 0)&lt;/code&gt;&lt;/p&gt; _
+&lt;span class="stackTraceExceptionMessage"&gt;java.lang.RuntimeException: Invalid expression [divide(1, 0)]&lt;/span&gt;
+...
+/span&gt;&lt;/span&gt;&lt;a href="ScreenshotListener_img1.jpg"&gt;&lt;img id="ScreenshotListener_img1.jpg" src="ScreenshotListener_img1.jpg" width="600" class="screenshot" /&gt;&lt;/a&gt;&lt;/p&gt;
+</pre>
+
+<p>The output looks like:</p>
+<div cx:embed="#fragment" ></div>
+<p style="font-style: italic;">(Hover over or click on the red failure to see the screenshot)</p>
+</div>
+
+    <h2>Further Details</h2>
+    
+    <ul>
+        <li><a href="ScreenshotCustomisation.html">How do I customise the screenshot extension?</a></li>
+    </ul>
+
+</body>
+</html>

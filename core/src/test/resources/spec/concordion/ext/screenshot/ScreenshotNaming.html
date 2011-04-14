@@ -1,0 +1,97 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>Screenshot Naming</h1>
+
+  <p>Screenshots are written to the same folder as the specification output.</p>
+  <div class="example">
+    <h3>Example - Location of screenshot</h3>
+    <pre concordion:set="#snippet">&lt;p concordion:assertTrue="#TEXT"&gt;false&lt;/p&gt;</pre>
+
+    <p concordion:execute="#fragment=render(#snippet, #actualValue)">
+      When run with this fixture in the
+      <code>spec.concordion.ext.screenshot</code>
+      package, there is one image written to
+    </p>
+    <table concordion:verifyRows="#resource : getResourceNamesOutput()">
+      <tr>
+        <th concordion:assertEquals="#resource">Location</th>
+      </tr>
+      <tr>
+        <td>/spec/concordion/ext/screenshot/ScreenshotNaming_img1.jpg</td>
+      </tr>
+    </table>
+
+  </div>
+
+
+  <p>Screenshots within the same spec are numbered sequentially.</p>
+
+  <div class="example">
+    <h3>Example - Two screenshots in the same specification</h3>
+    <pre concordion:set="#snippet">&lt;p concordion:assertTrue="#TEXT"&gt;false&lt;/p&gt;
+&lt;p concordion:assertTrue="#TEXT"&gt;false&lt;/p&gt;</pre>
+
+    <p concordion:execute="#fragment=render(#snippet, #actualValue)">
+      When run with this fixture, this results in two images being included in the HTML output and saved to the sub-folder <code concordion:set="#folder">spec/concordion/ext/screenshot</code>:
+    </p>
+    <table concordion:verifyRows="#image : listScreenshotImages(#folder, #fragment)">
+      <tr>
+        
+        <th concordion:assertEquals="#image.imageName">Image name</th>
+        <th concordion:assertEquals="#image.storedOnDisk">Saved to disk?</th>
+      </tr>
+      <tr>
+        
+        <td>ScreenshotNaming_img1.jpg</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        
+        <td>ScreenshotNaming_img2.jpg</td>
+        <td>true</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>Image names start with the specification name so that they are unique within the package.</p>
+
+  <div class="example">
+    <h3>Example - Screenshots in different specifications</h3>
+    <pre concordion:set="#snippet">&lt;p concordion:assertTrue="#TEXT"&gt;false&lt;/p&gt;</pre>
+
+    <p concordion:execute="#fragment=render(#snippet, #actualValue)">
+      When this snippet is run by a fixture named <code concordion:execute="#fragment1=renderUsingFixtureNamed(#snippet, #TEXT)">/fruit/GreenApple.html</code>, it results in the image being written to the <code concordion:set="#folder">fruit</code> folder:</p>
+
+    <table concordion:verifyRows="#image : listScreenshotImages(#folder, #fragment1)">
+      <tr>
+        
+        <th concordion:assertEquals="#image.imageName">Image name</th>
+        <th concordion:assertEquals="#image.storedOnDisk">Saved to disk?</th>
+      </tr>
+      <tr>
+        
+        <td>GreenApple_img1.jpg</td>
+        <td>true</td>
+      </tr>
+    </table>
+
+    <p>When subsequently run by a fixture named <code concordion:execute="#fragment2=renderUsingFixtureNamed(#snippet, #TEXT)">/fruit/RedApple.html</code>, it results in the image being written to the <code concordion:set="#folder">fruit</code> folder:</p>
+
+    <table concordion:verifyRows="#image : listScreenshotImages(#folder, #fragment2)">
+      <tr>
+        
+        <th concordion:assertEquals="#image.imageName">Image name</th>
+        <th concordion:assertEquals="#image.storedOnDisk">Saved to disk?</th>
+      </tr>
+      <tr>
+        
+        <td>RedApple_img1.jpg</td>
+        <td>true</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>

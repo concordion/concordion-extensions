@@ -1,0 +1,31 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>embed</h1>
+
+  <p>The Embed extension adds an <code>embed</code> command to embed HTML snippets in the Concordion output.</p>
+
+  <div class="example">
+        <h3>Example</h3>
+        
+        <p>Given the specification maps the prefix <code concordion:set="#prefix">cx</code> to the namespace <code concordion:set="#namespace">urn:concordion-extensions:2010</code>.</p>
+
+        <p concordion:execute="setNextResult(#result)">
+            If the expression "<b>username</b>"
+            evaluates to "<b concordion:set="#result">&lt;p font-style="italic">jbloggs&lt;/p&gt;</b>" and we 
+            have the following instrumentation in our specification:
+        </p>
+
+<pre concordion:set="#fragment">
+&lt;p&gt;Username: <b>&lt;span cx:embed="#username" /&gt;</b>&lt;/p&gt;
+</pre>
+
+        <p>Then we expect the following output:</p>
+
+<pre concordion:assertEquals="render(#fragment, #prefix, #namespace)">
+&lt;p&gt;Username: <b>&lt;span cx:embed="#username"&gt;&lt;p font-style="italic">jbloggs&lt;/p&gt;&lt;/span&gt;</b>&lt;/p&gt;
+</pre>
+</div>
+</body>
+</html>
