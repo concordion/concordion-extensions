@@ -1,6 +1,7 @@
 
 syntax: regexp
 ^core/\.gradle$
+\.iml$
 syntax: regexp
 ^core/\.classpath$
 syntax: regexp
