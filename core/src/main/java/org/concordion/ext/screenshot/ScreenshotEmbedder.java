@@ -1,15 +1,31 @@
 package org.concordion.ext.screenshot;
 
-import org.concordion.api.*;
-import org.concordion.api.listener.*;
+import java.io.IOException;
+import java.io.OutputStream;
+
+
+import org.concordion.api.AbstractCommand;
+import org.concordion.api.CommandCall;
+import org.concordion.api.Element;
+import org.concordion.api.Evaluator;
+import org.concordion.api.Resource;
+import org.concordion.api.ResultRecorder;
+import org.concordion.api.Target;
+import org.concordion.api.listener.AssertEqualsListener;
+import org.concordion.api.listener.AssertFailureEvent;
+import org.concordion.api.listener.AssertFalseListener;
+import org.concordion.api.listener.AssertSuccessEvent;
+import org.concordion.api.listener.AssertTrueListener;
+import org.concordion.api.listener.ConcordionBuildEvent;
+import org.concordion.api.listener.ConcordionBuildListener;
+import org.concordion.api.listener.SpecificationProcessingEvent;
+import org.concordion.api.listener.SpecificationProcessingListener;
+import org.concordion.api.listener.ThrowableCaughtEvent;
+import org.concordion.api.listener.ThrowableCaughtListener;
 import org.concordion.ext.ScreenshotExtension;
 import org.concordion.ext.ScreenshotTaker;
 import org.concordion.ext.ScreenshotUnavailableException;
 import org.concordion.internal.util.Check;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Random;
 
 public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsListener, AssertTrueListener, AssertFalseListener, ConcordionBuildListener, SpecificationProcessingListener, ThrowableCaughtListener {
 
@@ -60,7 +76,7 @@ public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsL
     }
     
     private void addScreenshotTo(Element element, boolean hidden) {
-        String imageName = getNextImageName();
+        String imageName = getNextImageName(resource.getName());
         Resource imageResource = resource.getRelativeResource(imageName);
         
         int imageWidth;
@@ -74,11 +90,18 @@ public class ScreenshotEmbedder extends AbstractCommand implements AssertEqualsL
         }
     }
 
-    private String getNextImageName() {
-        String fileName = "img"+(new Random()).nextLong();
+    private String getNextImageName(String specName) {
+        String imagePrefix = getImagePrefix(specName);
         String fileExtension = getFileExtension();
+        return String.format("%s_img%d.%s", imagePrefix, index++, fileExtension);
+    }
 
-        return String.format("%s.%s", fileName, fileExtension);
+    private String getImagePrefix(String specName) {
+        int lastDot = specName.lastIndexOf('.');
+        if (lastDot == -1) {
+            return specName;
+        }
+        return specName.substring(0, lastDot);
     }
 
     private String getFileExtension() {
