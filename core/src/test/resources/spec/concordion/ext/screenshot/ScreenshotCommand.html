@@ -1,0 +1,58 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<head>
+</head>
+<body>
+
+  <h1>screenshot</h1>
+  <p>The <code>screenshot</code> command explicitly adds a screenshot to the Concordion output. The screenshot can appear inline or as a link.</p>
+  
+  <div class="example">
+        <h3>Example - embedded screenshot</h3>
+        
+        <p>Given the specification maps the prefix <code concordion:set="#prefix">cx</code> to the namespace <code concordion:set="#namespace">urn:concordion-extensions:2010</code>.</p>
+        
+        <pre concordion:set="#snippet">&lt;p cx:screenshot="" /&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet, #prefix, #namespace)">When run this snippet produces:</p>
+        
+        <pre class="html" concordion:assertEquals="#fragment">
+&lt;p cx:screenshot=""&gt;&lt;a href="ScreenshotCommand1_img1.jpg"&gt;&lt;img id="ScreenshotCommand1_img1.jpg" src="ScreenshotCommand1_img1.jpg" width="600" /&gt;&lt;/a&gt;&lt;/p&gt;
+</pre>
+
+<p>The output looks like:</p>
+<div cx:embed="#fragment" ></div>
+</div>
+
+  <div class="example">
+        <h3>Example - linked screenshot</h3>
+        
+        <p>Given the specification maps the prefix <code concordion:set="#prefix">cx</code> to the namespace <code concordion:set="#namespace">urn:concordion-extensions:2010</code>.</p>
+        
+        <pre concordion:set="#snippet">&lt;p cx:screenshot="<b>linked</b>" style="text-decoration: underline;" &gt;my image&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet, #prefix, #namespace)">When run this snippet produces:</p>
+        
+        <pre class="html" concordion:assertEquals="#fragment">
+&lt;p cx:screenshot=<b>"linked"</b> style="text-decoration: underline;" _
+ onMouseOver="if (showScreenshotOn(event)) {show('ScreenshotCommand2_img1.jpg');this.style.cursor='pointer'}" _
+ onMouseOut="hide('ScreenshotCommand2_img1.jpg');this.style.cursor='default'" _
+ onClick="if (showScreenshotOn(event)) {hide('ScreenshotCommand2_img1.jpg');window.location.href='ScreenshotCommand2_img1.jpg'}"&gt; _
+my image _
+&lt;a href="ScreenshotCommand2_img1.jpg"&gt;&lt;img id="ScreenshotCommand2_img1.jpg" src="ScreenshotCommand2_img1.jpg" width="600" class="screenshot" /&gt;&lt;/a&gt; _
+&lt;/p&gt;
+</pre>
+
+<p>The output looks like:</p>
+<div cx:embed="#fragment" ></div>
+</div>
+
+    <h2>Further Details</h2>
+    
+    <ul>
+        <li><a href="ScreenshotCustomisation.html">How do I customise the screenshot extension?</a></li>
+    </ul>
+
+
+</body>
+</html>
