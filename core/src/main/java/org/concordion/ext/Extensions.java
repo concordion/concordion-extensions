@@ -24,5 +24,6 @@ public class Extensions implements ConcordionExtension {
         new LoggingTooltipExtension().addTo(concordionExtender);
         new ScreenshotExtension().addTo(concordionExtender);
         new TimestampFormatterExtension().addTo(concordionExtender);
+        new EmbedExtension().addTo(concordionExtender);
     }
 }
