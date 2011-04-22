@@ -22,7 +22,7 @@ import test.concordion.EmbedExtensionWithConcordionNamespaceFactory;
 import test.concordion.TestRig;
 
 @RunWith(ConcordionRunner.class)
-public class ExceptionTranslator {
+public class Translator {
 
     private String exceptionMessage;
 
