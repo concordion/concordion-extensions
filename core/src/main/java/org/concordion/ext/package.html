@@ -21,9 +21,11 @@ This package contains extensions to:
 <ol>
     <li>embed logging information in the Concordion output</li>
     <li>embed screenshots in the Concordion output</li>
+    <li>embed HTML in the Concordion output</li>
+    <li>translate the text of exception messages</li>
     <li>change the timestamp in the footer of the Concordion output from milliseconds to hours, minutes and seconds</li>
 </ol>
-<p>To add all of the extensions, set the system property <code>concordion.extensions</code> to <code>org.concordion.ext.Extensions</code>.
+<p>To add all of the extensions (except <code>TranslatorExtension</code>), set the system property <code>concordion.extensions</code> to <code>org.concordion.ext.Extensions</code>.
 This is typically set in the &#064;BeforeClass of a base test case:</p> 
 <pre>
     &#064;BeforeClass
