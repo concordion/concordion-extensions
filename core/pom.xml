@@ -116,11 +116,12 @@
             <concordion.output.dir>target/concordion</concordion.output.dir>
           </systemPropertyVariables>
           <includes>
-            <include>**/*Test.java</include>
-            <include>spec/**Test.java</include>
+            <include>spec/**/*.java</include>
+            <include>org/**/*.java</include>
           </includes>
           <excludes>
-            <exclude>**/Abstract*</exclude>
+            <exclude>**/*Factory.java</exclude>
+            <exclude>**/*$*.java</exclude>
           </excludes>
         </configuration>
       </plugin>
