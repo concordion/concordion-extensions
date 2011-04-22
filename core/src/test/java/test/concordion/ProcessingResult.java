@@ -47,6 +47,16 @@ public class ProcessingResult {
         return new Element(getXOMDocument().getRootElement());
     }
     
+    public String getFooterText() {
+        Element[] childDivs = getRootElement().getDescendantElements("div");
+        for (Element div : childDivs) {
+            if ("footer".equals(div.getAttributeValue("class"))) {
+                return div.getText();
+            }
+        }
+        return "";
+    }
+    
     public String toXML() {
         return getRootElement().toXML();
     }
@@ -72,7 +82,7 @@ public class ProcessingResult {
     }
 
     public boolean hasCSSDeclaration(String cssFilename) {
-        Element head = getRootElement().getFirstChildElement("head");
+        Element head = getHeadElement();
         for (Element link : head.getChildElements("link")) {
             String href = link.getAttributeValue("href");
             String type = link.getAttributeValue("type");
@@ -87,8 +97,7 @@ public class ProcessingResult {
     }
 
     public boolean hasEmbeddedCSS(String css) {
-        Element head = getRootElement().getFirstChildElement("head");
-        for (Element style : head.getChildElements("style")) {
+        for (Element style : getHeadElement().getChildElements("style")) {
             if (style.getText().contains(css) ) {
                 return true;
             }
@@ -96,12 +105,11 @@ public class ProcessingResult {
         return false;
     }
 
-    public boolean hasJavaScriptDeclaration(String cssFilename) {
-        Element head = getRootElement().getFirstChildElement("head");
-        for (Element script : head.getChildElements("script")) {
+    public boolean hasJavaScriptDeclaration(String jsFilename) {
+        for (Element script : getHeadElement().getChildElements("script")) {
             String type = script.getAttributeValue("type");
             String src = script.getAttributeValue("src");
-            if ("text/javascript".equals(type) && cssFilename.equals(src)) {
+            if ("text/javascript".equals(type) && jsFilename.equals(src)) {
                 return true;
             }
         }
@@ -109,13 +117,20 @@ public class ProcessingResult {
     }
 
     public boolean hasEmbeddedJavaScript(String javaScript) {
-        Element head = getRootElement().getFirstChildElement("head");
-        for (Element script : head.getChildElements("script")) {
+        for (Element script : getHeadElement().getChildElements("script")) {
             String type = script.getAttributeValue("type");
             if ("text/javascript".equals(type) && script.getText().contains(javaScript)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean hasJavaScriptFunction(String functionName) {
+        return hasEmbeddedJavaScript("function " + functionName + "(");
+    }
+    
+    private Element getHeadElement() {
+        return getRootElement().getFirstChildElement("head");
     }
 }

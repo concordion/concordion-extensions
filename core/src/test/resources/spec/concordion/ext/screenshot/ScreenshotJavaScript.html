@@ -1,0 +1,22 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>Screenshot JavaScript</h1>
+
+  <p>The Screenshot extension adds JavaScript functions to hide and show the screenshot image.</p>
+  
+  <div class="example">
+        <h3>Example</h3>
+        
+        <p concordion:execute="setSystemProperty(#name, #value)">Given the system property <code concordion:set="#name">concordion.extensions</code> is set to <code concordion:set="#value">org.concordion.ext.ScreenshotExtension</code>.</p>
+        
+        <p>The HTML output includes the </p>
+        <ul>
+        <li><span concordion:assertTrue="hasJavaScriptFunction(#TEXT)">hide</span> function, to hide the screenshot,</li>
+        <li><span concordion:assertTrue="hasJavaScriptFunction(#TEXT)">show</span> function, to show the screenshot, and</li>
+        <li><span concordion:assertTrue="hasJavaScriptFunction(#TEXT)">showScreenshotOn</span> function, to ensure screenshots are not shown when hovering over stack traces.</li>
+        </ul>
+  </div>
+</body>
+</html>

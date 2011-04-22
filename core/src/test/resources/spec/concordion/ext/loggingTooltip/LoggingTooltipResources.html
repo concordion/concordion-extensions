@@ -1,0 +1,22 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>Logging Tooltip Resources</h1>
+
+  <p>The Logging Tooltip extension copies image files to the Concordion output folder.</p>
+  
+  <div class="example">
+        <h3>Example</h3>
+        
+        <p concordion:execute="setSystemProperty(#name, #value)">Given the system property <code concordion:set="#name">concordion.extensions</code> is set to <code concordion:set="#value">org.concordion.ext.LoggingTooltipExtension</code>.</p>
+        
+        <p>The following files are copied to the output folder: </p>
+        <ul>
+        <li><span concordion:assertTrue="hasCopiedResource(#TEXT)">bubble.gif</span></li>
+        <li><span concordion:assertTrue="hasCopiedResource(#TEXT)">bubble_filler.gif</span></li>
+        <li><span concordion:assertTrue="hasCopiedResource(#TEXT)">info16.png</span> (renamed to <code>i16.png</code>)</li>
+        </ul>
+  </div>
+</body>
+</html>

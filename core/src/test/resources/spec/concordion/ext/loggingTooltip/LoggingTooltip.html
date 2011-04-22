@@ -1,0 +1,47 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>Logging Tooltip Extension</h1>
+
+  <p>The Logging Tooltip extension adds logging information as tooltips to the Concordion output. The logging information is only displayed when
+hovering over the tooltip.</p>
+
+  <p>By default, this extension will capture all output from the root java.util.logging logger and disable console logging of the root logger.</p>
+
+  <div class="example">
+        <h3>Example</h3>
+        
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="getName()"&gt;Frank&lt;/p&gt;</pre>
+
+        <p>When <span concordion:execute="#fragment=render(#snippet)">run</span> with a fixture that logs and returns the name "Frank", it becomes:</p>
+        
+        <pre class="html" concordion:assertEquals="#fragment">
+&lt;p concordion:assertEquals="getName()" class="success"&gt;Frank&amp;#160;&lt;/p&gt; _
+&lt;a href="#" class="tt"&gt; _
+&lt;img src="image/info16.png" alt="i"&gt;&amp;#160;&lt;/img&gt; _
+&lt;span class="tooltip"&gt; _
+&lt;span class="top" /&gt; _
+&lt;span class="middle"&gt; _
+[<i>timestamp</i>]: Got name Frank  _
+&lt;br /&gt; _
+&lt;/span&gt;&lt;span class="bottom" /&gt; _
+&lt;/span&gt; _
+&lt;/a&gt;
+</pre>
+
+<p>where <i>timestamp</i> shows the time the statement was logged.</p>
+ 
+<p><b>NOTE:</b> the icon that appears above is after an execute command within this specification.  Since we are running a specification within a specification, it appears in an unusual location.</p>
+
+  </div>
+
+    <h2>Further Details</h2>
+    
+    <ul>
+        <li><a href="LoggingTooltipCss.html">What CSS styles does the extension add?</a></li>
+        <li><a href="LoggingTooltipResources.html">What resources does the extension add?</a></li>
+    </ul>
+
+</body>
+</html>

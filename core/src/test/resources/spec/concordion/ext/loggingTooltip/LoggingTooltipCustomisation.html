@@ -1,0 +1,78 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<head>
+<style type="text/css">
+tt, tt *, pre, code, pre *, code * {
+  font-family: Courier New, Courier, Fixed;
+  font-size: 10pt;
+}
+pre {
+  padding: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+pre.java {
+    background-color: #e4eefc;
+}
+pre.html {
+    background-color: #ffffd9;
+    border: 1px solid #ededdf;
+}
+</style>
+</head>    
+
+<body>
+
+  <h1>Logging Tooltip Customisation</h1>
+
+  <p>The Logging Tooltip extension can be customised using a ConcordionExtensionFactory to restrict the log output to
+named loggers, and by logging level. The output of logging to the console can also be enabled.</p>
+
+  <div class="example">
+        <h3>Example - restrict output to single named logger</h3>
+        <p concordion:execute="configureLoggers(#loggers)">Given the LoggingTooltipExtensionFactory has been restricted to use only the <code concordion:set="#loggers">foo</code> logger,</p>
+        <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
+        is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
+          
+        <p>When running </p>
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="getName()"&gt;Frank&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet)"> with a fixture that logs "Hello Foo" to the <code>foo</code> logger, and "Hello Bar" to the <code>bar</code> logger,
+        the logging tooltip displays:</p>
+        
+        <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello Foo</pre>
+  </div>
+
+  <div class="example">
+        <h3>Example - restrict output to multiple named loggers</h3>
+        <p concordion:execute="configureLoggers(#loggers)">Given the LoggingTooltipExtensionFactory has been restricted to use the <code concordion:set="#loggers">baz, foo</code> loggers,</p>
+        <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
+        is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
+          
+        <p>When running </p>
+        <pre concordion:set="#snippet">&lt;p concordion:assertEquals="getName()"&gt;Frank&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet)"> with a fixture that logs "Hello Foo" to the <code>foo</code> logger, "Hello Bar" to the <code>bar</code> logger, and "Hello Baz" to the <code>baz</code> logger,
+        the logging tooltip displays:</p>
+        
+        <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello Foo
+[<i>timestamp</i>]: Hello Baz</pre>
+  </div>
+
+  <div class="example">
+        <h3>Example - restrict output to specific log level</h3>
+        <p concordion:execute="configureLogLevel(#logLevel)">Given the LoggingTooltipExtensionFactory has been restricted to use the <code concordion:set="#logLevel">INFO</code> log level,</p>
+        <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
+        is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
+          
+        <p>When running </p>
+        <pre concordion:set="#snippet">&lt;p concordion:execute="logStuff()"/&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet)"> with a fixture that logs "Hello Info" at the <code>INFO</code> log level, "Hello Fine" to the <code>FINE</code> log level, and "Hello Warn" to the <code>WARN</code> log level,
+        the logging tooltip displays:</p>
+        
+        <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello Info
+[<i>timestamp</i>]: Hello Warn</pre>
+  </div>
+</body>
+</html>

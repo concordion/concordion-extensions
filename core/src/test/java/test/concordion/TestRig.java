@@ -6,6 +6,7 @@ import org.concordion.Concordion;
 import org.concordion.api.EvaluatorFactory;
 import org.concordion.api.Resource;
 import org.concordion.api.ResultSummary;
+import org.concordion.api.Source;
 import org.concordion.internal.ConcordionBuilder;
 import org.concordion.internal.SimpleEvaluatorFactory;
 
@@ -15,6 +16,7 @@ public class TestRig {
     private Object fixture = null;
     private EvaluatorFactory evaluatorFactory = new SimpleEvaluatorFactory();
     private StubSource stubSource = new StubSource();
+    private Source source = stubSource;
     private StubTarget stubTarget = new StubTarget();
     private String namespaceDeclaration = "xmlns:concordion='" + ConcordionBuilder.NAMESPACE_CONCORDION_2007 + "'";
 
@@ -41,7 +43,7 @@ public class TestRig {
         Concordion concordion = new ConcordionBuilder()
             .withAssertEqualsListener(eventRecorder)
             .withThrowableListener(eventRecorder)
-            .withSource(stubSource)
+            .withSource(source)
             .withEvaluatorFactory(evaluatorFactory)
             .withTarget(stubTarget)
             .build();
@@ -74,6 +76,11 @@ public class TestRig {
 
     public TestRig withStubbedEvaluationResult(Object evaluationResult) {
         this.evaluatorFactory = new StubEvaluator().withStubbedResult(evaluationResult);
+        return this;
+    }
+    
+    public TestRig withSourceFilter(String filterPrefix) {
+        this.source = new FilterSource(source, filterPrefix);
         return this;
     }
     

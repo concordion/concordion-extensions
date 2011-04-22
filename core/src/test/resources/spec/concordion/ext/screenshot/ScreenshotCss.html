@@ -1,0 +1,18 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<body>
+
+  <h1>Screenshot CSS Styles</h1>
+
+  <p>The Screenshot extension adds a CSS style for the screenshot image.</p>
+  
+  <div class="example">
+        <h3>Example</h3>
+        
+        <p concordion:execute="setSystemProperty(#name, #value)">Given the system property <code concordion:set="#name">concordion.extensions</code> is set to <code concordion:set="#value">org.concordion.ext.ScreenshotExtension</code></p>
+        
+        <p>The HTML output includes the <span concordion:assertTrue="hasStyle(#TEXT)">screenshot</span> style.</p>
+
+  </div>
+</body>
+</html>
