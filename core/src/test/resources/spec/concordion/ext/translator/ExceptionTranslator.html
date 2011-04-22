@@ -1,0 +1,90 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion" xmlns:cx="urn:concordion-extensions:2010">
+<link href="../../../../concordion.css" rel="stylesheet" type="text/css" />
+<head>
+<style type="text/css">
+tt, tt *, pre, code, pre *, code * {
+  font-family: Courier New, Courier, Fixed;
+  font-size: 10pt;
+}
+pre {
+  padding: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+pre.java {
+    background-color: #e4eefc;
+}
+pre.html {
+    background-color: #ffffd9;
+    border: 1px solid #ededdf;
+}
+</style>
+
+<script>
+/* Stack Trace Toggling - Explicitly add this to make the View stack trace button work since the exception example embeds the HTML from an example that is called externally from this spec. */
+
+function getElementById(id) {
+  var element;
+
+  if (document.getElementById) { // standard
+    return document.getElementById(id);
+  } else if (document.all) { // old IE versions
+    return document.all[id];
+  } else if (document.layers) { // nn4
+    return document.layers[id];
+  }
+  alert("Sorry, but your web browser is not supported by Concordion.");
+}
+
+function isVisible(element) {
+  return element.style.display;
+}
+
+function makeVisible(element) {
+  element.style.display = "block";
+}
+
+function makeInvisible(element) {
+  element.style.display = "";
+}
+
+function toggleStackTrace(stackTraceNumber) {
+  var stackTrace = getElementById("stackTrace" + stackTraceNumber);
+  var stackTraceButton = getElementById("stackTraceButton" + stackTraceNumber);
+  if (isVisible(stackTrace)) {
+    makeInvisible(stackTrace);
+    stackTraceButton.value = "View Stack";
+  } else {
+    makeVisible(stackTrace);
+    stackTraceButton.value = "Hide Stack";
+  }
+}
+</script>
+</head>
+<body>
+
+  <h1>Exception Translator</h1>
+
+  <p>The Exception Translator extension modifies the exception message.</p>
+
+  <div class="example">
+        <h3>Example</h3>
+        
+        <p concordion:execute="setSystemProperty(#name, #value)">Given the system property <code concordion:set="#name">concordion.extensions</code> is set to <code concordion:set="#value">spec.concordion.ext.translator.FrenchTranslatorExtensionFactory</code>.</p>
+
+        <p>When running a fixture that throws an exception with the message <b concordion:execute="setExceptionMessage(#TEXT)">Unable to connect to http://localhost:9080</b>, when the following command is executed </p>
+        
+        <pre concordion:set="#snippet">&lt;p concordion:execute="makeConnection()"&gt;Connectez moi&lt;/p&gt;</pre>
+
+        <p concordion:execute="#fragment=render(#snippet)">, the output displays the exception message:</p>
+
+        <pre class="html" concordion:assertEquals="getExceptionMessage(#snippet)">Impossible de se connecter à http://localhost:9080</pre>
+
+        <p>, and the stack trace retains the original exception message:</p>
+         
+        <pre class="html" concordion:assertEquals="getStackTraceMessage(#snippet)">RuntimeException: Unable to connect to http://localhost:9080</pre>
+        
+    <p>The output looks like: <span cx:embed="#fragment"></span></p>
+  </div>
+</body>
+</html>

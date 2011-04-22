@@ -57,6 +57,26 @@ public class ProcessingResult {
         return "";
     }
     
+    public String getExceptionMessage() {
+        Element[] childSpans = getRootElement().getDescendantElements("span");
+        for (Element span : childSpans) {
+            if ("exceptionMessage".equals(span.getAttributeValue("class"))) {
+                return span.getText();
+            }
+        }
+        return "";
+    }
+    
+    public String getStackTraceMessage() {
+        Element[] childSpans = getRootElement().getDescendantElements("span");
+        for (Element span : childSpans) {
+            if ("stackTraceExceptionMessage".equals(span.getAttributeValue("class"))) {
+                return span.getText();
+            }
+        }
+        return "";
+    }
+    
     public String toXML() {
         return getRootElement().toXML();
     }
