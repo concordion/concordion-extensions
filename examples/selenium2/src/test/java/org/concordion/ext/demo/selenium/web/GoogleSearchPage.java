@@ -20,6 +20,9 @@ public class GoogleSearchPage {
 	@FindBy(name = "btnG") 
 	private WebElement submitButton;
 	
+    @FindBy(className = "nonExistent")
+    private WebElement nonExistentLink;
+
     private final WebDriver driver;
     
 	/**
@@ -41,4 +44,8 @@ public class GoogleSearchPage {
 		submitButton.click();
 		return new GoogleResultsPage(driver);
 	}
+    
+    public void clickOnNonExistentLink() {
+        nonExistentLink.click();
+    }
 }
