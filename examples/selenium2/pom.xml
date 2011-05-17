@@ -52,25 +52,12 @@
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-common</artifactId>
+      <artifactId>selenium</artifactId>
       <version>${selenium.version}</version>
       <scope>test</scope>
+      <type>pom</type>
     </dependency>
 
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-support</artifactId>
-      <version>${selenium.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-firefox-driver</artifactId>
-      <version>${selenium.version}</version>
-      <scope>test</scope>
-    </dependency>
-    
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
