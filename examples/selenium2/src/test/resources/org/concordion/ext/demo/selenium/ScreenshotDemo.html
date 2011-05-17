@@ -2,16 +2,13 @@
 <link href="../../concordion.css" rel="stylesheet" type="text/css" />
 <body>
 
-<h1>All Whites</h1>
+<h1>The Ultimate Question</h1>
 
-<p>As an All Whites fan, I want Google to return the right answers so I can gloat.</p> 
+<p>What do you get if you <a href="http://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#Answer_to_the_Ultimate_Question_of_Life.2C_the_Universe.2C_and_Everything_.2842.29">multiply six by nine</a>?</p> 
 
 <div class="example">
 <h4>Example</h4>
-<p c:execute="searchFor(#searchText)">Googling "<span c:set="#searchText">only undefeated team in 2010 world cup</span>" 
-<span c:assertEquals="#result1">displays</span> "<span c:execute="#result1 = resultsContainText(#TEXT)">New Zealand</span>"
-and <span c:assertEquals="#result2">does not display</span> "<span c:execute="#result2 = resultsContainText(#TEXT)">Netherlands</span>".
-</p>
+<p>When I google "<span c:execute="searchFor(#TEXT)">6 * 9</span>" the answer should be "<span c:assertEquals="getCalculatorResult()">6 x 9 = 42</span>".</p>
 </div>
 
 </body>

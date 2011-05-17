@@ -43,10 +43,10 @@ public class ScreenshotDemoTest extends GoogleFixture {
 		resultsPage = searchPage.searchFor(topic);
 	}
 	
-	/**
-	 * Checks whether the specified text occurs in any result on the results page.
-	 */
-    public String resultsContainText(String text) {
-		return resultsPage.resultsContain(text) ? "displays" : "does not display";
-	}
+    /**
+     * Returns the result from Google calculation.
+     */
+    public String getCalculatorResult() {
+        return resultsPage.getCalculatorResult();
+    }
 }
