@@ -33,7 +33,7 @@ public class ScreenshotDemoTest extends GoogleFixture {
     @Before
     public void loadExtensions() {
         ScreenshotExtensionFactory.setDriver(site.getDriver());
-        System.setProperty("concordion.extensions", "org.concordion.ext.selenium.ScreenshotExtensionFactory, org.concordion.ext.TimestampFormatterExtension"); 
+        System.setProperty("concordion.extensions", ScreenshotExtensionFactory.class.getName() + "," + TimestampFormatterExtension.class.getName()); 
     }
  
 	/**

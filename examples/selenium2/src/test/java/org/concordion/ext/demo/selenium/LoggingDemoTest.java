@@ -1,5 +1,6 @@
 package org.concordion.ext.demo.selenium;
 
+import org.concordion.ext.LoggingTooltipExtension;
 import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class LoggingDemoTest extends GoogleFixture {
     
     @Before
     public void loadExtensions() {
-        System.setProperty("concordion.extensions", "org.concordion.ext.LoggingTooltipExtension"); 
+        System.setProperty("concordion.extensions", LoggingTooltipExtension.class.getName()); 
     }
  
 	/**
