@@ -16,3 +16,12 @@ syntax: regexp
 ^examples/selenium2/\.classpath$
 syntax: regexp
 ^examples/selenium2/build$
+
+syntax: regexp
+^core/target$
+syntax: regexp
+^examples/selenium2/\.settings$
+syntax: regexp
+^core/bin$
+syntax: regexp
+^examples/selenium2/bin$
