@@ -20,11 +20,10 @@ public class SeleniumEventLogger implements WebDriverEventListener {
     @Override
     public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
         String elementName = getElementName(arg0);
-        String newValue = "";
         try {
-            newValue = arg0.getValue();
+            String newValue = arg0.getValue();
             if (!newValue.equals(oldValue)) {
-                if (newValue.isEmpty()) {
+                if (newValue.length() == 0) {
                     logger.info("Cleared value of {}", elementName);
                 } else {
                     logger.info("Changed value of {} to {}", elementName, newValue);
@@ -98,10 +97,10 @@ public class SeleniumEventLogger implements WebDriverEventListener {
     private String getElementName(WebElement arg0) {
         try {
             String id = arg0.getAttribute("id");
-            if (id != null && !id.isEmpty())
+            if (id != null && id.length() > 0)
                 return id;
             String name = arg0.getAttribute("name");
-            if (name != null && !name.isEmpty())
+            if (name != null && name.length() > 0)
                 return name;
         } catch (Exception ignore) {
         }

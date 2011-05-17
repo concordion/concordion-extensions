@@ -81,11 +81,11 @@ h4 {
     <h2>Running the Concordion tests</h2>
     <p>The tests use Selenium's FirefoxDriver, so you'll need to have Firefox installed (or you could try changing the code, and installing additional WebDriver libraries, to use a different driver).</p>
     
-    <p>You can run build the tests using either <a href="http://www.gradle.org/">Gradle</a> or <a href="http://maven.apache.org/">Maven</a>.</p>  
+    <p>You can build and run the tests using either <a href="http://www.gradle.org/">Gradle</a> or <a href="http://maven.apache.org/">Maven</a>.</p>  
     
     <h3>Using Gradle</h3>
     <ol>
-      <li><a href="http://www.gradle.org/downloads.html">Download</a> and <a href="http://www.gradle.org/installation.html">install</a> Gradle (this has been tested with 0.9.2)</li>
+      <li><a href="http://www.gradle.org/downloads.html">Download</a> and <a href="http://www.gradle.org/installation.html">install</a> Gradle (this has been tested with 1.0-milestone-3)</li>
       <li>Unzip this package</li>
       <li>From a command line opened at the location to which this package has been unzipped:
           <ul>
@@ -109,7 +109,7 @@ h4 {
     <h2>Optional - Generate an Eclipse Project</h2>
     <p>If you use Eclipse and want to generate an Eclipse project:</p>
       <ol>
-      <li><a href="http://www.gradle.org/downloads.html">Download</a> and <a href="http://www.gradle.org/installation.html">install</a> Gradle (this has been tested with v0.9.2)</li>
+      <li><a href="http://www.gradle.org/downloads.html">Download</a> and <a href="http://www.gradle.org/installation.html">install</a> Gradle (this has been tested with v1.0-milestone-3)</li>
         <li>Unzip this package</li>
       <li>From a command line opened at the location to which this package has been unzipped:
           <ul>
@@ -117,7 +117,7 @@ h4 {
           </ul>
         </li>
         <li>import this project into  Eclipse (File > Import > Existing Project into Workspace, select the path to this project, then select concordion-extensions-demo-selenium2).  Make sure the workspace is in a different folder than the project.</li>
-        <li>run the tests LoggingDemoTest and ScreenshotDemoTest using Run As > JUnit Test</li>
+        <li>under src/test/java, expand org.concordion.ext.demo.selenium, and run each of the tests LoggingDemoTest and ScreenshotDemoTest using Run As > JUnit Test</li>
       </ol>
       
       <p>The dependencies are listed in build.gradle, and will be downloaded by Gradle.</p>  
@@ -128,7 +128,7 @@ h4 {
     <h3>JUnit output</h3>
     <p>Both tests should pass successfully, though the console output for the ScreenshotDemo test should show:</p>
     <pre>
-    Successes: 1, Failures: 1   <-- Note: This test has been marked as EXPECTED_TO_FAIL
+    Successes: 0, Failures: 1   <-- Note: This test has been marked as EXPECTED_TO_FAIL
     </pre> 
     <p>This test deliberately contains a failure in order to demonstrate a screenshot being taken on failure. 
     It uses Concordion's <code>@ExpectedToFail</code> annotation to keep the JUnit passing (you'd normally only use this when you have a partially implemented feature).</p>
@@ -136,7 +136,7 @@ h4 {
     <h3>Concordion output</h3>
     The output folder should contain 2 specifications:
     <h4>ScreenshotDemo.html</h4>
-    <p>This should show a passing example (green) and a failing example (red). Hovering the mouse over the failing example will show a screenshot taken when the failure occurred. Clicking on the failure will open the
+    <p>This should show a failing example (red). Hovering the mouse over the failing example will show a screenshot taken when the failure occurred. Clicking on the failure will open the
     screenshot.</p> 
     <p>The screenshot extension is configured with a custom <code>SeleniumScreenshotTaker</code> class that uses Selenium's <a href="http://selenium.googlecode.com/svn/trunk/docs/api/java/org/openqa/selenium/TakesScreenshot.html">TakesScreenshot</a> interface to take a 
        screenshot of the web page.  The extension has a number of <a href="http://concordion.org/extensions/ScreenshotExtension.html#Configuration">configuration options</a>, for example to also take screenshots on successful examples and to set the image width.

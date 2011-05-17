@@ -1,8 +1,8 @@
-// Tested with gradle-0.9
+// Tested with gradle-1.0-milestone-3
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
-version = '1.0.1.2'
+version = '1.0.2'
 archivesBaseName = 'concordion-extensions-demo'
 eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 sourceCompatibility = 1.6
@@ -13,13 +13,11 @@ repositories {
 }
 
 slf4jVersion    = '1.6.1'
-seleniumVersion = '2.0b1'
+seleniumVersion = '2.0b3'
 
 dependencies {
     testCompile 'org.concordion:concordion-extensions:1.0.1',
-                "org.seleniumhq.selenium:selenium-common:$seleniumVersion",
-                "org.seleniumhq.selenium:selenium-support:$seleniumVersion",
-                "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion",
+                "org.seleniumhq.selenium:selenium:$seleniumVersion",
                 "org.slf4j:slf4j-api:$slf4jVersion"
                 
     runtime "org.slf4j:slf4j-jdk14:$slf4jVersion"
