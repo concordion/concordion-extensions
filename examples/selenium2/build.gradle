@@ -16,7 +16,7 @@ slf4jVersion    = '1.6.1'
 seleniumVersion = '2.0b3'
 
 dependencies {
-    testCompile 'org.concordion:concordion-extensions:1.0.1',
+    testCompile 'org.concordion:concordion-extensions:1.0.2',
                 "org.seleniumhq.selenium:selenium:$seleniumVersion",
                 "org.slf4j:slf4j-api:$slf4jVersion"
                 
