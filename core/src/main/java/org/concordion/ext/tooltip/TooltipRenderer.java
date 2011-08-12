@@ -54,7 +54,7 @@ public class TooltipRenderer {
         
         Element tooltip = createTooltip(resource.getRelativePath(tooltipImageResource), text);
         if (element.getLocalName().equals("table")) {
-            Element tr = element.getFirstChildElement("tr");
+            Element tr = element.getFirstDescendantNamed("tr");
             Element th = new Element("th"); 
             tr.appendChild(th);
             th.appendChild(tooltip);
