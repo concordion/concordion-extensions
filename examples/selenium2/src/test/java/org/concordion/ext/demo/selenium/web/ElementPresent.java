@@ -2,7 +2,6 @@ package org.concordion.ext.demo.selenium.web;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.RenderedWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -20,7 +19,7 @@ public class ElementPresent implements ExpectedCondition<WebElement> {
 	@Override
 	public WebElement apply(WebDriver driver) {
 	    WebElement element = driver.findElement(locator);
-	    if (!((RenderedWebElement)element).isDisplayed()) {
+	    if (!element.isDisplayed()) {
 	    	throw new NotFoundException("Element is not displayed");
 	    }
 		return element;

@@ -14,14 +14,14 @@ public class SeleniumEventLogger implements WebDriverEventListener {
 
     @Override
     public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
-        oldValue = arg0.getValue();
+        oldValue = arg0.getAttribute("value");
     }
 
     @Override
     public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
         String elementName = getElementName(arg0);
         try {
-            String newValue = arg0.getValue();
+            String newValue = arg0.getAttribute("value");
             if (!newValue.equals(oldValue)) {
                 if (newValue.length() == 0) {
                     logger.info("Cleared value of {}", elementName);
