@@ -20,46 +20,19 @@ import java.util.logging.Logger;
 import org.concordion.api.Resource;
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
-import org.concordion.api.extension.ConcordionExtensionFactory;
 import org.concordion.ext.logging.JavaUtilLogMessenger;
-import org.concordion.ext.logging.LogMessenger;
 import org.concordion.ext.logging.LogMessageTooltipWriter;
+import org.concordion.ext.logging.LogMessenger;
 
 /**
- * Annotates the Concordion HTML output with logging information captured using java.util.logging. See <a href="http://tutansblog.blogspot.com/2010/09/whats-happening-in-my-acceptance-tests.html">this blog entry</a> for details and screenshots.
+ * Annotates the Concordion HTML output with logging information captured using java.util.logging. 
  * <p>
  * <h4>Default Configuration</h4>
  * By default, this extension will capture all output from the root logger and disable console logging of the root logger.
  * <p>
- * To install the extension:
- * <pre>
- *       System.setProperty("concordion.extensions", "org.concordion.ext.LoggingTooltipExtension");
- * </pre>
  * <h4>Custom Configuration</h4>
- * The extension can be customised using an {@link ConcordionExtensionFactory} to call the custom constructor. The logging can be restricted to named loggers,
+ * The extension can be customised using the custom constructor. The logging can be restricted to named loggers,
  * and by logging levels. The output of logging to the console can also be enabled.
- * <p>
- * An example factory:
- * <pre>
- * package carbon;
- * 
- * import java.util.logging.Level;
- * import org.concordion.ext.LoggingTooltipExtension;
- * import org.concordion.api.extension.ConcordionExtension;
- * import org.concordion.api.extension.ConcordionExtensionFactory;
- * 
- * public class LoggingTooltipExtensionFactory implements ConcordionExtensionFactory {
- *     &#064;Override
- *     public ConcordionExtension createExtension() {
- *         String loggers = "carbon.CarbonCalculatorTest, selenium.events";
- *         return new LoggingTooltipExtension(loggers, Level.FINE, false);
- *     }
- * }
- * </pre>
- * To install this example extension factory:
- * <pre>
- *       System.setProperty("concordion.extensions", "carbon.LoggingTooltipExtensionFactory");
- * </pre>
  * <p>
  * Thanks to Trent Richardson for the <a href="http://trentrichardson.com/examples/csstooltips/">CSS Tooltip</a> implementation.
  */
