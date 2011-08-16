@@ -1,13 +1,14 @@
 package org.concordion.ext.demo.selenium;
 
 import org.concordion.api.ExpectedToFail;
+import org.concordion.api.extension.Extensions;
 import org.concordion.ext.TimestampFormatterExtension;
 import org.concordion.ext.selenium.ExceptionTranslatorExtensionFactory;
-import org.concordion.ext.selenium.ScreenshotExtensionFactory;
 import org.concordion.ext.selenium.SeleniumScreenshotTaker;
 import org.concordion.integration.junit4.ConcordionRunner;
-import org.junit.Before;
 import org.junit.runner.RunWith;
+
+import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
 
 /**
  * A fixture class for the ExceptionDemo.html specification.
@@ -26,13 +27,9 @@ import org.junit.runner.RunWith;
  */
 @RunWith(ConcordionRunner.class)
 @ExpectedToFail
-public class ExceptionTranslatorDemoTest extends GoogleFixture {
+@Extensions(ExceptionTranslatorExtensionFactory.class)
+public class ExceptionTranslatorDemo extends GoogleFixture {
 	
-    @Before
-    public void loadExtensions() {
-        System.setProperty("concordion.extensions", ExceptionTranslatorExtensionFactory.class.getName()); 
-    }
- 
 	/**
 	 * Searches for the specified topic, and waits for the results page to load.
 	 */

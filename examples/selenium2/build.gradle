@@ -30,6 +30,8 @@ task createDistZip(type: Zip) {
 }
 
 test {
-    include '**/*Test.*'
+    include '**/ExtensionsDemo.*'
     systemProperties['concordion.output.dir'] = "$reportsDir/spec"
 }
+
+test.dependsOn cleanTest
