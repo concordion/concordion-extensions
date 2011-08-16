@@ -8,8 +8,6 @@ import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
-import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
-
 /**
  * A fixture class for the ExceptionDemo.html specification.
  * <p>

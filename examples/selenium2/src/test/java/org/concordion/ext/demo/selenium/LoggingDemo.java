@@ -1,6 +1,5 @@
 package org.concordion.ext.demo.selenium;
 
-import org.concordion.api.extension.Extensions;
 import org.concordion.ext.LoggingTooltipExtension;
 import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
 import org.concordion.integration.junit4.ConcordionRunner;
