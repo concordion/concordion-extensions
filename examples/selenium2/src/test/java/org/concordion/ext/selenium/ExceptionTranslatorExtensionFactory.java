@@ -13,7 +13,7 @@ public class ExceptionTranslatorExtensionFactory implements ConcordionExtensionF
             
             @Override
             public String translate(String originalMessage) {
-                int webDriverDebugInfoStart = originalMessage.indexOf("System info:");
+                int webDriverDebugInfoStart = originalMessage.indexOf("Build info:");
                 if (webDriverDebugInfoStart > 0) {
                     return originalMessage.substring(0, webDriverDebugInfoStart);
                 }
