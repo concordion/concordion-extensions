@@ -1,16 +1,13 @@
 package org.concordion.ext.demo.selenium;
 
 import org.concordion.api.ExpectedToFail;
-import org.concordion.api.extension.Extension;
-import org.concordion.api.extension.Extensions;
-import org.concordion.ext.ScreenshotExtension;
 import org.concordion.ext.TimestampFormatterExtension;
 import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
+import org.concordion.ext.selenium.ScreenshotExtensionFactory;
 import org.concordion.ext.selenium.SeleniumScreenshotTaker;
 import org.concordion.integration.junit4.ConcordionRunner;
+import org.junit.Before;
 import org.junit.runner.RunWith;
-
-import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
 
 /**
  * A fixture class for the ScreenshotDemo.html specification.
@@ -29,11 +26,13 @@ import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
  */
 @RunWith(ConcordionRunner.class)
 @ExpectedToFail
-@Extensions(TimestampFormatterExtension.class)
 public class ScreenshotDemo extends GoogleFixture {
 	
-    @Extension
-    public ScreenshotExtension screenshotExtension = new ScreenshotExtension().setScreenshotTaker(new SeleniumScreenshotTaker(site.getDriver()));
+    @Before
+    public void loadExtensions() {
+        ScreenshotExtensionFactory.setDriver(site.getDriver());
+        System.setProperty("concordion.extensions", ScreenshotExtensionFactory.class.getName() + "," + TimestampFormatterExtension.class.getName()); 
+    }
     
  	private GoogleResultsPage resultsPage; 
 
