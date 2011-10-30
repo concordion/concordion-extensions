@@ -40,9 +40,11 @@ pre.html {
 
   <h1>Screenshot Customisation</h1>
 
-  <p>The Screenshot extension can be customised using a ConcordionExtensionFactory. For example, it can use a custom ScreenshotTaker, take screenshots on assertion success as well as failure, and limit the maximum width of the screenshot images on mouse hover.
-
+  <p>The Screenshot extension can be customised using methods on the <code>ScreenshotExtension</code> class. 
+  For example, it can use a custom ScreenshotTaker, take screenshots on assertion success as well as failure, and limit the maximum width of the screenshot images on mouse hover.
   </p>
+  <p>The simplest way to configure it is to add the @Extension annotation to a ScreenshotExtension field in your fixture class. Alternatively, you can create
+  a ConcordionExtensionFactory.</p>
 
   <div class="example">
         <h3>Example - Creating a screenshot on successful assertions, and changing width</h3>
