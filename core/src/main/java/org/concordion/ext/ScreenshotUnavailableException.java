@@ -24,4 +24,8 @@ public class ScreenshotUnavailableException extends RuntimeException {
     public ScreenshotUnavailableException() {
     }
 
+    public ScreenshotUnavailableException(String message) {
+        super(message);
+    }
+
 }

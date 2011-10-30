@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import org.concordion.ext.ScreenshotTaker;
+import org.concordion.ext.ScreenshotUnavailableException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -24,7 +25,12 @@ public class SeleniumScreenshotTaker implements ScreenshotTaker {
 
     @Override
     public int writeScreenshotTo(OutputStream outputStream) throws IOException {
-        byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+        byte[] screenshot;
+        try {
+            screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+        } catch (ClassCastException e) {
+            throw new ScreenshotUnavailableException("driver does not implement TakesScreenshot");
+        }
         outputStream.write(screenshot);
         return ((Long)((JavascriptExecutor)driver).executeScript("return document.body.clientWidth")).intValue() + 2; //window.outerWidth"));
     }
