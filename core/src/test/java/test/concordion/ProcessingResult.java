@@ -49,29 +49,29 @@ public class ProcessingResult {
     
     public String getFooterText() {
         Element[] childDivs = getRootElement().getDescendantElements("div");
-        for (Element div : childDivs) {
-            if ("footer".equals(div.getAttributeValue("class"))) {
-                return div.getText();
-            }
-        }
-        return "";
+        return textOfElementWithClass(childDivs, "footer");
     }
-    
+
     public String getExceptionMessage() {
         Element[] childSpans = getRootElement().getDescendantElements("span");
-        for (Element span : childSpans) {
-            if ("exceptionMessage".equals(span.getAttributeValue("class"))) {
-                return span.getText();
-            }
-        }
-        return "";
+        return textOfElementWithClass(childSpans, "exceptionMessage");
     }
     
     public String getStackTraceMessage() {
-        Element[] childSpans = getRootElement().getDescendantElements("span");
-        for (Element span : childSpans) {
-            if ("stackTraceExceptionMessage".equals(span.getAttributeValue("class"))) {
-                return span.getText();
+        String clazz = "stackTraceExceptionMessage";
+        Element[] childDivs = getRootElement().getDescendantElements("div");   // was changed from span to div in Concordion 1.4.2
+        String message = textOfElementWithClass(childDivs, clazz);
+        if (message == null) {
+            Element[] childSpans = getRootElement().getDescendantElements("span");
+            message = textOfElementWithClass(childSpans, clazz);
+        }
+        return message;
+    }
+    
+    private String textOfElementWithClass(Element[] elements, String clazz) {
+        for (Element div : elements) {
+            if (clazz.equals(div.getAttributeValue("class"))) {
+                return div.getText();
             }
         }
         return "";

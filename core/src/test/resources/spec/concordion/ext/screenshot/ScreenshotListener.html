@@ -87,9 +87,6 @@ function toggleStackTrace(stackTraceNumber) {
 &lt;/p&gt;
 </pre>
 
-<p>The output looks like:</p>
-<div cx:embed="#fragment" ></div>
-<p style="font-style: italic;">(Hover over or click on the red failure to see the screenshot)</p>
 </div>
 
   <div class="example">
@@ -107,15 +104,12 @@ function toggleStackTrace(stackTraceNumber) {
 &lt;span class="failure"&gt;&lt;del class="expected"&gt;infinity&lt;/del&gt;&lt;/span&gt; _
 &lt;span class="exceptionMessage"&gt;Invalid expression [divide(1, 0)]&lt;/span&gt; _
 &lt;input class="stackTraceButton" id="stackTraceButton1" type="button" onclick="javascript:toggleStackTrace('1')" value="View Stack" /&gt; _
-&lt;span class="stackTrace" id="stackTrace1"&gt;&lt;p&gt;While evaluating expression: &lt;code&gt;divide(1, 0)&lt;/code&gt;&lt;/p&gt; _
-&lt;span class="stackTraceExceptionMessage"&gt;java.lang.RuntimeException: Invalid expression [divide(1, 0)]&lt;/span&gt;
+&lt;div class="stackTrace" id="stackTrace1"&gt;&lt;p&gt;While evaluating expression: &lt;code&gt;divide(1, 0)&lt;/code&gt;&lt;/p&gt; _
+&lt;div class="stackTraceExceptionMessage"&gt;java.lang.RuntimeException: Invalid expression [divide(1, 0)]&lt;/div&gt;
 ...
-/span&gt;&lt;/span&gt;&lt;a href="ScreenshotListener_img1.jpg"&gt;&lt;img id="ScreenshotListener_img1.jpg" src="ScreenshotListener_img1.jpg" width="600" class="screenshot" /&gt;&lt;/a&gt;&lt;/p&gt;
+/div&gt;&lt;/div&gt;&lt;a href="ScreenshotListener_img1.jpg"&gt;&lt;img id="ScreenshotListener_img1.jpg" src="ScreenshotListener_img1.jpg" width="600" class="screenshot" /&gt;&lt;/a&gt;&lt;/p&gt;
 </pre>
 
-<p>The output looks like:</p>
-<div cx:embed="#fragment" ></div>
-<p style="font-style: italic;">(Hover over or click on the red failure to see the screenshot)</p>
 </div>
 
     <h2>Further Details</h2>

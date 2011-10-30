@@ -26,8 +26,9 @@ import test.concordion.ext.screenshot.DummyScreenshotFactory;
 @RunWith(ConcordionRunner.class)
 public class ScreenshotListener {
     
-    private static final String STACK_TRACE_START_TAG = "<span class=\"stackTraceEntry\">";
-    private static final String STACK_TRACE_END_TAG = "</span>";
+    // Stack traces changed from using span to div in Concordion 1.4.2
+    private static final String STACK_TRACE_DIV_START_TAG = "<div class=\"stackTraceEntry\">";
+    private static final String STACK_TRACE_DIV_END_TAG = "</div>";
     
     public static final String SPEC_NAME = "/" + ScreenshotListener.class.getName().replace(".java", ".html").replaceAll("\\.","/");
     public String acronym;
@@ -52,9 +53,15 @@ public class ScreenshotListener {
     }
 
     public String removeStackTraces(String htmlSnippet) {
-        String firstBit = htmlSnippet.substring(0, htmlSnippet.indexOf(STACK_TRACE_START_TAG));
-        int lastStackTraceStart = htmlSnippet.lastIndexOf(STACK_TRACE_START_TAG);
-        int lastStackTraceEnd = htmlSnippet.indexOf(STACK_TRACE_END_TAG, lastStackTraceStart);
+        if (htmlSnippet.indexOf(STACK_TRACE_DIV_START_TAG) >= 0)
+                return removeStackTracesWithTags(htmlSnippet, STACK_TRACE_DIV_START_TAG, STACK_TRACE_DIV_END_TAG);
+        throw new RuntimeException("Couldn't find stack trace starting with '" + STACK_TRACE_DIV_START_TAG + "'");
+    }
+
+    private String removeStackTracesWithTags(String htmlSnippet, String startTag, String endTag) {
+        String firstBit = htmlSnippet.substring(0, htmlSnippet.indexOf(startTag));
+        int lastStackTraceStart = htmlSnippet.lastIndexOf(startTag);
+        int lastStackTraceEnd = htmlSnippet.indexOf(endTag, lastStackTraceStart);
         String lastBit = htmlSnippet.substring(lastStackTraceEnd + 1);
         return firstBit + "\n...\n" + lastBit;
     }
