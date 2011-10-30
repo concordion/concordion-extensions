@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -73,6 +74,6 @@ public class GoogleResultsPage {
     
     private void waitForFooter() {
 		WebDriverWait wait = new  WebDriverWait(driver, 30);
-		wait.until(new ElementPresent(By.id("foot")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("foot")));
 	}
 }

@@ -1,9 +1,9 @@
 package org.concordion.ext.demo.selenium;
 
+import org.concordion.api.extension.Extensions;
 import org.concordion.ext.LoggingTooltipExtension;
 import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
 import org.concordion.integration.junit4.ConcordionRunner;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
 /**
@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
  * Run this class as a JUnit test to produce the Concordion results.
  */
 @RunWith(ConcordionRunner.class)
+@Extensions(LoggingTooltipExtension.class)
 public class LoggingDemo extends GoogleFixture {
 	
  	GoogleResultsPage resultsPage;
@@ -26,11 +27,6 @@ public class LoggingDemo extends GoogleFixture {
         super(true);
     }
     
-    @Before
-    public void loadExtensions() {
-        System.setProperty("concordion.extensions", LoggingTooltipExtension.class.getName()); 
-    }
-
 	/**
 	 * Searches for the specified topic, and waits for the results page to load.
 	 */

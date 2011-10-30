@@ -1,7 +1,7 @@
 package org.concordion.ext.demo.selenium;
 
+import org.concordion.ext.demo.selenium.web.Browser;
 import org.concordion.ext.demo.selenium.web.GoogleSearchPage;
-import org.concordion.ext.demo.selenium.web.Site;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.After;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 @RunWith(ConcordionRunner.class)
 public abstract class GoogleFixture {
 
-	protected Site site;
+	protected Browser browser;
 	protected GoogleSearchPage searchPage;
 
     GoogleFixture() {
@@ -21,15 +21,15 @@ public abstract class GoogleFixture {
     }
     
 	GoogleFixture(boolean logWebDriverEvents) {
-		site = new Site();
+		browser = new Browser();
         if (logWebDriverEvents) {
-            site.addLogger();
+            browser.addLogger();
         }
-		searchPage = new GoogleSearchPage(site.getDriver());	
+		searchPage = new GoogleSearchPage(browser.getDriver());	
 	}
 	
 	@After
 	public void close() {
-		site.close();
+		browser.close();
 	}
 }

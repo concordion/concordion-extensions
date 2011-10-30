@@ -1,13 +1,17 @@
 package org.concordion.ext.demo.selenium;
 
 import org.concordion.api.ExpectedToFail;
+import org.concordion.api.extension.ConcordionExtension;
+import org.concordion.api.extension.Extension;
+import org.concordion.api.extension.Extensions;
+import org.concordion.ext.ScreenshotExtension;
 import org.concordion.ext.TimestampFormatterExtension;
 import org.concordion.ext.demo.selenium.web.GoogleResultsPage;
-import org.concordion.ext.selenium.ScreenshotExtensionFactory;
 import org.concordion.ext.selenium.SeleniumScreenshotTaker;
 import org.concordion.integration.junit4.ConcordionRunner;
-import org.junit.Before;
 import org.junit.runner.RunWith;
+
+import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
 
 /**
  * A fixture class for the ScreenshotDemo.html specification.
@@ -25,14 +29,14 @@ import org.junit.runner.RunWith;
  * doesn't special case the answer to life, the universe and everything.
  */
 @RunWith(ConcordionRunner.class)
+@Extensions(TimestampFormatterExtension.class)
 @ExpectedToFail
 public class ScreenshotDemo extends GoogleFixture {
 	
-    @Before
-    public void loadExtensions() {
-        ScreenshotExtensionFactory.setDriver(site.getDriver());
-        System.setProperty("concordion.extensions", ScreenshotExtensionFactory.class.getName() + "," + TimestampFormatterExtension.class.getName()); 
-    }
+    private SeleniumScreenshotTaker screenshotTaker = new SeleniumScreenshotTaker(browser.getDriver());
+    
+    @Extension
+    public ConcordionExtension extension = new ScreenshotExtension().setScreenshotTaker(screenshotTaker);
     
  	private GoogleResultsPage resultsPage; 
 

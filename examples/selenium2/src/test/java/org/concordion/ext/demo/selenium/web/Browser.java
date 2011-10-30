@@ -8,10 +8,10 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 /**
  * Manages the browser session. 
  */
-public class Site {
+public class Browser {
     private WebDriver driver;
     
-    public Site() {
+    public Browser() {
         driver = new FirefoxDriver();
     }
     

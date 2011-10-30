@@ -1,36 +1,28 @@
 package org.concordion.ext.demo.selenium;
 
 import org.concordion.api.ExpectedToFail;
-import org.concordion.ext.TimestampFormatterExtension;
-import org.concordion.ext.selenium.ExceptionTranslatorExtensionFactory;
-import org.concordion.ext.selenium.SeleniumScreenshotTaker;
+import org.concordion.api.extension.ConcordionExtension;
+import org.concordion.api.extension.Extension;
+import org.concordion.ext.TranslatorExtension;
+import org.concordion.ext.selenium.SeleniumExceptionMessageTranslator;
+import org.concordion.ext.translator.MessageTranslator;
 import org.concordion.integration.junit4.ConcordionRunner;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
 /**
- * A fixture class for the ExceptionDemo.html specification.
+ * A fixture class for the ExceptionTranslatorDemo.html specification.
  * <p>
- * This adds the Screenshot Extension to Concordion to include screenshots on error in the Concordion output.
- * By default this extension uses java.awt.Robot to take the screenshot. 
+ * This adds the TranslatorExtension to Concordion to modify the exception message text. It is configured with a 
+ * {@link MessageTranslator} which strips the debug information from the end of the Selenium WebDriver exception messages.  
  * <p>
- * To include just the browser screen in the results, we configure the extension using the {@link ScreenshotExtensionFactory}
- * and {@link SeleniumScreenshotTaker} to take screenshots using WebDriver's TakesScreenshot interface.
- * <p>
- * This example also demonstrates the {@link TimestampFormatterExtension}, which changes the Concordion footer to show times
- * in hours, minutes and seconds. 
- * <p>
- * Run this class as a JUnit test to produce the Concordion results.  The test is expected to fail, since Google displays
- * "Netherlands" in the results.
+ * Run this class as a JUnit test to produce the Concordion results.  The test is expected to fail, since it clicks on a 
+ * non-existent WebElement.
  */
 @RunWith(ConcordionRunner.class)
 @ExpectedToFail
 public class ExceptionTranslatorDemo extends GoogleFixture {
-	
-    @Before
-    public void loadExtensions() {
-        System.setProperty("concordion.extensions", ExceptionTranslatorExtensionFactory.class.getName()); 
-    }
+	@Extension
+	public ConcordionExtension translator = new TranslatorExtension(new SeleniumExceptionMessageTranslator());
 
 	/**
 	 * Searches for the specified topic, and waits for the results page to load.
