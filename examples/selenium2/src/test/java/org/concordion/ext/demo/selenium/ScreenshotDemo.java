@@ -11,8 +11,6 @@ import org.concordion.ext.selenium.SeleniumScreenshotTaker;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;
 
-import spec.concordion.ext.screenshot.ScreenshotExtensionFactory;
-
 /**
  * A fixture class for the ScreenshotDemo.html specification.
  * <p>
