@@ -102,7 +102,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.2.1</version>
         <configuration>
           <tagBase>https://concordion.googlecode.com/svn/tags/</tagBase>
           <goals>source:jar javadoc:jar deploy</goals>
