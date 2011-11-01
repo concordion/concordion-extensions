@@ -4,10 +4,10 @@
   <artifactId>concordion-extensions</artifactId>
   <packaging>jar</packaging>
   <name>concordion-extensions</name>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
 
   <description>
-    This project adds features to Concordion acceptance tests, such as embedding screenshots or logging information in the output.
+    This project adds features to the Concordion acceptance test framework, such as embedding screenshots or logging information in the output.
   </description>
 
   <url>http://concordion-extensions.googlecode.com</url>
@@ -33,10 +33,14 @@
 
   <developers>
     <developer>
+      <name>Nigel Charman</name>
       <id>nigel.charman.nz</id>
+      <url>http://gplus.to/NigelCharman</url>
       <roles>
         <role>Project owner</role>
       </roles>
+      <organization>Two Ten Consulting</organization>
+      <organizationUrl>http://www.210.co.nz</organizationUrl>
     </developer>
   </developers>
 
@@ -44,7 +48,7 @@
     <dependency>
       <groupId>org.concordion</groupId>
       <artifactId>concordion</artifactId>
-      <version>1.4.1</version>
+      <version>1.4.2</version>
     </dependency>
   </dependencies>
 
@@ -62,6 +66,14 @@
   </distributionManagement>
 
   <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+        </extensions>
+
     <plugins>
 
       <plugin>
