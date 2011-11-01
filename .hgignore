@@ -25,3 +25,9 @@ syntax: regexp
 ^core/bin$
 syntax: regexp
 ^examples/selenium2/bin$
+syntax: regexp
+^examples/selenium2/target$
+
+syntax: regexp
+.*~$
+
