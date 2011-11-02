@@ -2,7 +2,7 @@
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
-version = '1.0.2'
+version = '1.1.0.1'
 archivesBaseName = 'concordion-extensions-demo'
 eclipseProject.projectName = 'concordion-extensions-demo-selenium2'
 sourceCompatibility = 1.6
@@ -13,7 +13,7 @@ repositories {
 }
 
 slf4jVersion    = '1.6.1'
-seleniumVersion = '[2.0.0,3.0.0)'
+seleniumVersion = '2.10.0'
 
 dependencies {
     testCompile 'org.concordion:concordion-extensions:1.1.0',

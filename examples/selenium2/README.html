@@ -68,20 +68,21 @@ h4 {
   <body>
     <div class="page">
     <div class="content">
-    <h1>Concordion Extensions Selenium2 Example</h1>
+    <h1>Concordion-Extensions Selenium2 Example</h1>
     <h2>Introduction</h2>
 
-    <p>This project demonstrates the usage of <a href="http://concordion.org/">Concordion</a> <a href="http://concordion.org/Extensions.html">extensions</a> with <a href="http://code.google.com/p/selenium/w/list">Selenium 2</a> (also known as WebDriver).</p>
-    <ol>
-    <li>LoggingDemo demonstrates the <a href="http://concordion.org/extensions/LoggingTooltipExtension.html">LoggingTooltipExtension</a>.</li>
-    
+    <p>This project demonstrates the usage of <a href="http://concordion.org/">Concordion</a> <a href="http://concordion.org/Extensions.html">extensions</a> with <a href="http://code.google.com/p/selenium/w/list">Selenium WebDriver</a>.</p>
+    <p>The ExtensionsDemo index links to and runs the following tests:</p>
+    <ul>
     <li>ScreenshotDemo demonstrates the <a href="http://concordion.org/extensions/ScreenshotExtension.html">ScreenshotExtension</a>.</li>
-    </ol>
+    <li>LoggingDemo demonstrates the <a href="http://concordion.org/extensions/LoggingTooltipExtension.html">LoggingTooltipExtension</a>.</li>
+    <li>ExceptionTranslatorDemo demonstrates the <a href="http://concordion.org/extensions/TranslatorExtension.html">TranslatorExtension</a>.</li>
+    </ul>
     
-    <h2>Running the Concordion tests</h2>
-    <p>The tests use Selenium's FirefoxDriver, so you'll need to have Firefox installed (or you could try changing the code, and installing additional WebDriver libraries, to use a different driver).</p>
+    <h2>Running the tests</h2>
+    <p>The tests use Selenium's FirefoxDriver, so you'll need to have Firefox installed (or you could try changing the code to use a different driver).</p>
     
-    <p>You can build and run the tests using either <a href="http://www.gradle.org/">Gradle</a> or <a href="http://maven.apache.org/">Maven</a>.</p>  
+    <p>The download includes support to run the tests with either <a href="http://www.gradle.org/">Gradle</a> or <a href="http://maven.apache.org/">Maven</a>.</p>  
     
     <h3>Using Gradle</h3>
     <ol>
@@ -96,7 +97,7 @@ h4 {
     
     <h3>Using Maven</h3>
     <ol>
-      <li>Download and install maven</li>
+      <li>Download and install maven (this has been tested with 3.0.3)</li>
       <li>Unzip this package</li>
       <li>From a command line opened at the location to which this package has been unzipped:
         <ul>
@@ -123,18 +124,21 @@ h4 {
       <p>The dependencies are listed in build.gradle, and will be downloaded by Gradle.</p>  
 
       <h2>What you should see</h2>
-    <p>The tests will open a Firefox browser and perform a couple of Google searches.</p>
+    <p>The tests will open a Firefox browser and perform some Google searches.</p>
     
     <h3>JUnit output</h3>
-    <p>Both tests should pass successfully, though the console output for the ScreenshotDemo test should show:</p>
+    <p>The tests should pass successfully, though the console output for the ScreenshotDemo and ExceptionTranslatorDemo tests will show failures and exceptions with the message:</p>
     <pre>
-    Successes: 0, Failures: 1   <-- Note: This test has been marked as EXPECTED_TO_FAIL
+       <-- Note: This test has been marked as EXPECTED_TO_FAIL
     </pre> 
-    <p>This test deliberately contains a failure in order to demonstrate a screenshot being taken on failure. 
-    It uses Concordion's <code>@ExpectedToFail</code> annotation to keep the JUnit passing (you'd normally only use this when you have a partially implemented feature).</p>
+    <p>These tests deliberately contains failures in order to demonstrate features. 
+    They uses Concordion's <code>@ExpectedToFail</code> annotation to keep the JUnit passing (you'd normally only use this when you have a partially implemented feature).</p>
     
     <h3>Concordion output</h3>
-    The output folder should contain 2 specifications:
+    The output folder should contain 4 specifications:
+    <h4>ExtensionsDemo.html</h4>
+    <p>This contains links to the following specifications.</p>
+    
     <h4>ScreenshotDemo.html</h4>
     <p>This should show a failing example (red). Hovering the mouse over the failing example will show a screenshot taken when the failure occurred. Clicking on the failure will open the
     screenshot.</p> 
@@ -146,8 +150,12 @@ h4 {
      <p>This should show 2 blue information icons.  Hover over these icons to show information logged during the running of the example.</p>
      <p>The bulk of the output is logged by the <code>SeleniumEventLogger</code> class, which implements <a href="http://webdriver.googlecode.com/svn/javadoc/org/openqa/selenium/support/events/WebDriverEventListener.html">WebDriverEventListener</a>. 
      The result text is logged from the <code>GoogleResultsPage</code>.</p>
-     <p>Logging the implementation details in this way allows us to "<a href="http://blog.davidpeterson.co.uk/2011/01/concordion-extensions.html">retain a clear separation between intent and implementation, yet allow non-developers to be reassured that the test has been implemented correctly</a>"".</p>
+     <p>Logging the implementation details in this way allows us to "<a href="http://blog.davidpeterson.co.uk/2011/01/concordion-extensions.html">retain a clear separation between intent and implementation, yet allow non-developers to be reassured that the test has been implemented correctly</a>".</p>
     <p>By default this extension logs all output written using <code>java.util.logging</code>, with <a href="http://concordion.org/extensions/LoggingTooltipExtension.html#Configuration">configuration options</a> to restrict the output that is included.</p>
+    
+    <h4>ExceptionTranslatorDemo.html</h4>
+     <p>Shows the use of the TranslatorExtension to remove debug information from the WebDriver exception output.</p>
+    
     <h2>Potential Issues</h2>
     <h3>Proxy</h3>
     <p>If you are behind a HTTP proxy server, you may need to configure the proxy to allow access to www.google.com</p>
@@ -167,7 +175,7 @@ h4 {
     <div class="copyright">
 
      &nbsp; Copyright &copy; 2010-2011
-     <a href="http://tutansblog.blogspot.com">Nigel Charman</a>. All rights reserved.
+     <a href="http://gplus.to/NigelCharman/about">Nigel Charman</a>. All rights reserved.
     </div> <!-- copyright -->
   </body>
 </html>
