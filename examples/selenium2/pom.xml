@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.concordion</groupId>
   <artifactId>concordion-extensions-demo-selenium2</artifactId>
-  <version>1.1.0.1</version>
+  <version>1.1.0.2</version>
 
   <description>
     Sample Concordion tests using extensions from the concordion-extensions project.
@@ -104,7 +104,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <selenium.version>2.10.0</selenium.version>
+    <selenium.version>[2.23.0,3.0.0)</selenium.version>
     <slf4j.version>1.6.1</slf4j.version>    
     <concordion-extensions.version>1.1.0</concordion-extensions.version>
   </properties>
