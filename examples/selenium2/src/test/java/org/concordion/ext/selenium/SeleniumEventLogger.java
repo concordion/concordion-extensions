@@ -7,6 +7,7 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// Requires Selenium 2.23.0 or later to retrieve element names from WebElement.toString(). 
 public class SeleniumEventLogger implements WebDriverEventListener {
 
     final Logger logger = LoggerFactory.getLogger("selenium.events");
@@ -24,13 +25,13 @@ public class SeleniumEventLogger implements WebDriverEventListener {
             String newValue = arg0.getAttribute("value");
             if (!newValue.equals(oldValue)) {
                 if (newValue.length() == 0) {
-                    logger.info("Cleared value of {}", elementName);
+                    logger.info("[{}] - cleared value", elementName);
                 } else {
-                    logger.info("Changed value of {} to {}", elementName, newValue);
+                    logger.info("[{}] - changed value to '{}'", elementName, newValue);
                 }
             }
         } catch (Exception e) {
-            logger.info("Changed value of {}", elementName);
+            logger.info("[{}] - changed value", elementName);
         }
     }
 
@@ -40,7 +41,7 @@ public class SeleniumEventLogger implements WebDriverEventListener {
 
     @Override
     public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-        logger.info("Found element {}", arg0);
+        logger.debug("[{}] - found", arg0);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class SeleniumEventLogger implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement arg0, WebDriver arg1) {
-        logger.info("Clicked on {}", getElementName(arg0));
+        logger.info("[{}] - clicked", getElementName(arg0));
     }
 
     @Override
@@ -91,18 +92,16 @@ public class SeleniumEventLogger implements WebDriverEventListener {
 
     @Override
     public void onException(Throwable arg0, WebDriver arg1) {
-        logger.error(arg0.getClass().getName(), arg0);
+        logger.debug(arg0.getClass().getName(), arg0);
     }
 
     private String getElementName(WebElement arg0) {
-        try {
-            String id = arg0.getAttribute("id");
-            if (id != null && id.length() > 0)
-                return id;
-            String name = arg0.getAttribute("name");
-            if (name != null && name.length() > 0)
-                return name;
-        } catch (Exception ignore) {
+        String foundBy = arg0.toString();
+        if (foundBy != null) {
+            int arrowIndex = foundBy.indexOf("->");
+            if (arrowIndex >= 0) {
+                return "By." + foundBy.substring(arrowIndex + 3, foundBy.length() - 1);
+            }
         }
         return "unknown";
     }
