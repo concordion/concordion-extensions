@@ -4,7 +4,8 @@ apply plugin: 'eclipse'
 group   = 'org.concordion'
 version = '1.1.0'
 archivesBaseName = 'concordion-extensions'
-eclipseProject.projectName = 'concordion-extensions'
+eclipse.project.name = 'concordion-extensions'
+sourceCompatibility = 1.6
 
 repositories {
     mavenCentral()
@@ -15,5 +16,5 @@ dependencies {
 }
 
 test {
-    systemProperties['concordion.output.dir'] = "$reportsDir/spec"
+    systemProperties['concordion.output.dir'] = "$reporting.baseDir/spec"
 }
