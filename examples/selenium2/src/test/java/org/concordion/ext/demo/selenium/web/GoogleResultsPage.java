@@ -26,7 +26,7 @@ public class GoogleResultsPage {
 	private WebElement firstResultLink;
 	
     @CacheLookup
-    @FindBy(className = "r")
+    @FindBy(id = "cwos")
     private WebElement calcResultLink;
 
     private static Logger logger = Logger.getLogger(GoogleResultsPage.class.getName());
