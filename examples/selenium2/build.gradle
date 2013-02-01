@@ -12,11 +12,12 @@ repositories {
 }
 
 dependencies {
-    testCompile 'org.concordion:concordion-extensions:1.1.0',
-                "org.seleniumhq.selenium:selenium-java:2.+",
-                "org.slf4j:slf4j-api:1.6.1"
+    testCompile 'org.concordion:concordion:1.4.3',
+                'org.concordion:concordion-extensions:1.1.0',
+                'org.seleniumhq.selenium:selenium-java:2.+',
+                'org.slf4j:slf4j-api:1.6.1'
                 
-    runtime "org.slf4j:slf4j-jdk14:1.6.1"
+    runtime 'org.slf4j:slf4j-jdk14:1.6.1'
 }
 
 task createDistZip(type: Zip) {
