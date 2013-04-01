@@ -29,7 +29,7 @@ public class TimestampFormatter {
         String footerText = new TestRig()
             .withFixture(this)
             .processFragment("<p concordion:execute='sleep(#TEXT)'>2000</p>").getFooterText();
-        return footerText.substring(0, footerText.indexOf("on") + 2);
+        return footerText.substring(0, footerText.indexOf("in") + 8);
     }
     
     public void sleep(int millis) throws Exception {
