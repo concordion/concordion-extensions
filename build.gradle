@@ -8,11 +8,10 @@ buildscript {
     }
 }
 
-apply from: 'http://tellurianring.com/projects/gradle-plugins/gradle-release/apply.groovy'
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'nexus'
+apply from: 'http://tellurianring.com/projects/gradle-plugins/gradle-release/apply.groovy'
 
 repositories {
     mavenCentral()
