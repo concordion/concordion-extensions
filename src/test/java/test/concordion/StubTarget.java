@@ -51,4 +51,9 @@ public class StubTarget implements Target {
     public void setOutputStreamer(OutputStreamer streamer) {
         outputStreamer = streamer;
     }
+
+    @Override
+    public String resolvedPathFor(Resource resource) {
+        return null;
+    }
 }
