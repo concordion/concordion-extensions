@@ -43,6 +43,10 @@ public class LoggingTooltipCustomisation {
         System.setProperty(key, value);
     }
 
+    public void configureLogMessage(String value) {
+        AlternateLoggingTooltipExtensionFactory.logMessage = value;
+    }
+
     public String render(String fragment) throws Exception {
         String outputFragment = new TestRig()
             .withFixture(this)

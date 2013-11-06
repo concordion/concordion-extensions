@@ -43,9 +43,9 @@ public class LogMessageTooltipWriter implements AssertEqualsListener, AssertTrue
     private final LogMessenger logMessenger;
     private Resource resource;
 
-    public LogMessageTooltipWriter(Resource iconResource, LogMessenger logMessenger) {
+    public LogMessageTooltipWriter(TooltipRenderer renderer, LogMessenger logMessenger) {
         this.logMessenger = logMessenger;
-        renderer = new TooltipRenderer(iconResource);
+        this.renderer = renderer;
     }
 
     @Override
