@@ -34,7 +34,7 @@ pre.html {
     border: 1px solid #ededdf;
 }
 </style>
-</head>    
+</head>
 
 <body>
 
@@ -48,13 +48,13 @@ named loggers, and by logging level. The output of logging to the console can al
         <p concordion:execute="configureLoggers(#loggers)">Given the LoggingTooltipExtensionFactory has been restricted to use only the <code concordion:set="#loggers">foo</code> logger,</p>
         <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
         is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
-          
+
         <p>When running </p>
         <pre concordion:set="#snippet">&lt;p concordion:assertEquals="getName()"&gt;Frank&lt;/p&gt;</pre>
 
         <p concordion:execute="#fragment=render(#snippet)"> with a fixture that logs "Hello Foo" to the <code>foo</code> logger, and "Hello Bar" to the <code>bar</code> logger,
         the logging tooltip displays:</p>
-        
+
         <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello Foo</pre>
   </div>
 
@@ -63,7 +63,7 @@ named loggers, and by logging level. The output of logging to the console can al
         <p concordion:execute="configureLoggers(#loggers)">Given the LoggingTooltipExtensionFactory has been restricted to use the <code concordion:set="#loggers">baz, foo</code> loggers,</p>
         <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
         is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
-          
+
         <p>When running </p>
         <pre concordion:set="#snippet">&lt;p concordion:assertEquals="getName()"&gt;Frank&lt;/p&gt;</pre>
 
@@ -79,7 +79,7 @@ named loggers, and by logging level. The output of logging to the console can al
         <p concordion:execute="configureLogLevel(#logLevel)">Given the LoggingTooltipExtensionFactory has been restricted to use the <code concordion:set="#logLevel">INFO</code> log level,</p>
         <p concordion:execute="setSystemProperty(#key, #value)">and the system property <code concordion:set="#key">concordion.extensions</code>
         is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.LoggingTooltipExtensionFactory</code>.</p>
-          
+
         <p>When running </p>
         <pre concordion:set="#snippet">&lt;p concordion:execute="logStuff()"/&gt;</pre>
 
@@ -88,6 +88,29 @@ named loggers, and by logging level. The output of logging to the console can al
         
         <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello Info
 [<i>timestamp</i>]: Hello Warn</pre>
+  </div>
+
+  <p>
+      For those not using java.util.logging, a custom LogMessenger can be provided.  For the sake of the below
+      example, the implementation is one that returns a fixed string, but alternatives that use Logback, log4j or slf4j
+      can be easily implemented as an exercise for the reader.
+  </p>
+
+  <div class="example">
+      <h3>Example - custom log messenger</h3>
+
+      <p concordion:execute="configureLogMessage(#logMessage)">Given the AlternateLoggingTooltipExtensionFactory has been told to return <code concordion:set="#logMessage">Hello AlternateLoggingTooltipExtensionFactory</code> as a log message,</p>
+      <p concordion:execute="setSystemProperty(#key, #value)">Given the system property <code concordion:set="#key">concordion.extensions</code>
+          is set to the class <code concordion:set="#value">spec.concordion.ext.loggingTooltip.AlternateLoggingTooltipExtensionFactory</code>.</p>
+
+      <p>When running </p>
+      <pre concordion:set="#snippet">&lt;p concordion:execute="logStuff()"/&gt;</pre>
+
+      <p concordion:execute="#fragment=render(#snippet)"> with a fixture that logs "Hello Info" at the <code>INFO</code> log level, "Hello Fine" to the <code>FINE</code> log level, and "Hello Warn" to the <code>WARN</code> log level,
+          the logging tooltip displays:</p>
+
+      <pre class="html" concordion:assertEquals="getMessagesFrom(#fragment)">[<i>timestamp</i>]: Hello AlternateLoggingTooltipExtensionFactory</pre>
+
   </div>
 </body>
 </html>

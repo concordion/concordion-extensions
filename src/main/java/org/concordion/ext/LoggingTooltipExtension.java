@@ -23,9 +23,10 @@ import org.concordion.api.extension.ConcordionExtension;
 import org.concordion.ext.logging.JavaUtilLogMessenger;
 import org.concordion.ext.logging.LogMessageTooltipWriter;
 import org.concordion.ext.logging.LogMessenger;
+import org.concordion.ext.tooltip.TooltipRenderer;
 
 /**
- * Annotates the Concordion HTML output with logging information captured using java.util.logging. 
+ * Annotates the Concordion HTML output with logging information captured using a LogMessenger.
  * <p>
  * <h4>Default Configuration</h4>
  * By default, this extension will capture all output from the root logger and disable console logging of the root logger.
@@ -34,6 +35,10 @@ import org.concordion.ext.logging.LogMessenger;
  * The extension can be customised using the custom constructor. The logging can be restricted to named loggers,
  * and by logging levels. The output of logging to the console can also be enabled.
  * <p>
+ * <h4>Custom Log Framework</h4>
+ * An alternate LogMessenger implementation can be provided.  The default uses java.util.logging.
+ * <p>
+ *
  * Thanks to Trent Richardson for the <a href="http://trentrichardson.com/examples/csstooltips/">CSS Tooltip</a> implementation.
  */
 public class LoggingTooltipExtension implements ConcordionExtension {
@@ -47,35 +52,40 @@ public class LoggingTooltipExtension implements ConcordionExtension {
     private static final String BUBBLE_RESOURCE_PATH = "/org/concordion/ext/resource/bubble.gif";
     private static final Resource INFO_IMAGE_RESOURCE = new Resource("/image/info16.png");
     private static final String INFO_RESOURCE_PATH = "/org/concordion/ext/resource/i16.png";
-    
-    private final String loggerNames;
-    private final boolean displayRootConsoleLogging;
-    private final Level loggingLevel;
+
+    private final LogMessenger logMessenger;
 
     /**
-     * Default constructor that logs output from all loggers, with a {@link Level} of <code>INFO</code> or higher, and disables the console output of the root logger.
+     * Default constructor that logs output from all java.util.loggers, with a {@link Level} of <code>INFO</code> or higher, and disables the console output of the root logger.
      */
     public LoggingTooltipExtension() {
         this("", Level.INFO, false);
     }
 
     /**
-     * Custom constructor. 
-  
+     * Implementation that permits a custom LogMessenger.
+     * @param messenger
+     */
+    public LoggingTooltipExtension(LogMessenger messenger) {
+        this.logMessenger = messenger;
+    }
+
+    /**
+     * Custom constructor.
+     * Uses a JavaUtilLogMessenger logger.
+     *
      * @param loggerNames a comma separated list of the names of loggers whose output is to be shown in the Concordion output. An empty string indicates the root logger.
      * @param loggingLevel the logging {@link Level} for the handler that writes to the Concordion output. Log messages of this level and
      * higher will be output.  Note that the associated {@link Logger}s must also have an appropriate logging level set.
      * @param displayRootConsoleLogging <code>false</code> to remove console output for the root logger, <code>true</code> to show the console output
      */
     public LoggingTooltipExtension(String loggerNames, Level loggingLevel, boolean displayRootConsoleLogging) {
-        this.loggerNames = loggerNames;
-        this.loggingLevel = loggingLevel;
-        this.displayRootConsoleLogging = displayRootConsoleLogging;
+        this.logMessenger = new JavaUtilLogMessenger(loggerNames, loggingLevel, displayRootConsoleLogging);
     }
 
     @Override
     public void addTo(ConcordionExtender concordionExtender) {
-        LogMessageTooltipWriter extension = createExtension();
+        LogMessageTooltipWriter extension = new LogMessageTooltipWriter(new TooltipRenderer(INFO_IMAGE_RESOURCE), logMessenger);
 
         concordionExtender.withExecuteListener(extension).withAssertEqualsListener(extension).withAssertTrueListener(extension)
                 .withAssertFalseListener(extension).withVerifyRowsListener(extension).withThrowableListener(extension);
@@ -86,8 +96,4 @@ public class LoggingTooltipExtension implements ConcordionExtension {
         concordionExtender.withResource(INFO_RESOURCE_PATH, INFO_IMAGE_RESOURCE);
     }
 
-    private LogMessageTooltipWriter createExtension() {
-        LogMessenger logMessenger = new JavaUtilLogMessenger(loggerNames, loggingLevel, displayRootConsoleLogging);
-        return new LogMessageTooltipWriter(INFO_IMAGE_RESOURCE, logMessenger);
-    }
 }
