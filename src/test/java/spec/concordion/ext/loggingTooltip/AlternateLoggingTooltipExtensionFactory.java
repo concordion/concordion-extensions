@@ -1,6 +1,5 @@
 package spec.concordion.ext.loggingTooltip;
 
-import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
 import org.concordion.api.extension.ConcordionExtensionFactory;
 import org.concordion.ext.LoggingTooltipExtension;
