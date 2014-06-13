@@ -1,8 +1,10 @@
 package org.concordion.ext.run;
 
 
+import org.concordion.api.Element;
 import org.concordion.api.extension.ConcordionExtender;
 import org.concordion.api.extension.ConcordionExtension;
+import org.concordion.api.listener.RunEvent;
 import org.concordion.api.listener.RunFailureEvent;
 import org.concordion.api.listener.RunIgnoreEvent;
 import org.concordion.api.listener.RunListener;
@@ -18,22 +20,35 @@ public class RunTotalsExtension implements ConcordionExtension, RunListener {
 
 	@Override
 	public void throwableCaught(ThrowableCaughtEvent event) {
-		event.getElement().appendText(" (threw exception)");
+		writeText(event.getElement(), "threw exception");
 	}
 
+	
+	
 	@Override
-	public void successReported(RunSuccessEvent event) {		
-		event.getElement().appendText(" (" + event.getResultSummary().printCountsToString(event.getResultSummary()) + ")");
+	public void successReported(RunSuccessEvent event) {
+		writeText(event);
 	}
+
 
 	@Override
 	public void failureReported(RunFailureEvent event) {
-		event.getElement().appendText(" (" + event.getResultSummary().printCountsToString(event.getResultSummary()) + ")");
+		writeText(event);
 	}
 
 	@Override
 	public void ignoredReported(RunIgnoreEvent event) {
-		event.getElement().appendText(" (" + event.getResultSummary().printCountsToString(event.getResultSummary()) + ")");
+		writeText( event);
+	}
+
+	private void writeText(RunEvent event) {
+		writeText(event.getElement(), event.getResultSummary().printCountsToString(event.getResultSummary()));
+	}
+	
+	private void writeText(Element element, String text) {
+		Element sister = new Element("counts");
+		sister.appendText(" (" + text + ")");
+		element.appendSister(sister);
 	}
 
 }
