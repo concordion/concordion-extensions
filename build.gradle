@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.concordion:concordion:1.4.4'
+    compile 'org.concordion:concordion:1.5.0'
 }
 
 compileJava {
